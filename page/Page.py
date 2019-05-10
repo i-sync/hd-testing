@@ -1,6 +1,8 @@
 """
 Page Object, Base Page
 """
+import os
+
 class Page(object):
     '''基础类，用于所有页面的继承'''
     #实例化Page类时会执行__init__方法，该方法的入参是Page类的入参
@@ -17,7 +19,8 @@ class Page(object):
     def _open(self,url):
         url = self.base_url + url
         self.driver.get(url)
-        assert self.on_page(),"Did not land on %s" %url
+        if os.environ["env"] == "live":
+            assert self.on_page(),"Did not land on %s" %url
     #open()方法通过调用_open()方法打开URL网站
     def open(self):
         self._open(self.url)

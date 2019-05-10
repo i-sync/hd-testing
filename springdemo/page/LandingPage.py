@@ -5,6 +5,7 @@ from page.Page import Page
 from springdemo.element.ElementsDefine import ElementsDefine
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
+from springdemo.data.urls import current_url
 
 class LandingPage(Page):
     """
@@ -17,7 +18,7 @@ class LandingPage(Page):
         """
         self.url = "/landing"
         self.driver = driver
-        self.base_url = "https://freedomdays.harley-davidson.com"
+        self.base_url = current_url()
         #super(Page,self).__init__(driver, self.base_url)
         self.elemnt = ElementsDefine()
 
