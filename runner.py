@@ -39,5 +39,7 @@ if __name__ == "__main__":
         discovr = unittest.defaultTestLoader.discover("./springdemo/test_case", pattern="M*.py")
         runner.run(discovr)
     """
+    #custom define BeautifulReport.img_path
+    BeautifulReport.img_path = "report/screenshot"
     discovr = unittest.defaultTestLoader.discover("./springdemo/test_case", pattern="M*.py")
     BeautifulReport(discovr).report(filename=file_name, description="Auto Testing Report", log_path="report")

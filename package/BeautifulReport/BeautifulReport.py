@@ -417,7 +417,7 @@ class BeautifulReport(ReportTestResult, PATH):
                 except Exception:
                     if 'save_img' in dir(args[0]):
                         save_img = getattr(args[0], 'save_img')
-                        save_img(func.__name__)
+                        save_img(pargs[0])
                         data = BeautifulReport.img2base(img_path, pargs[0] + '.png')
                         print(HTML_IMG_TEMPLATE.format(data, data))
                     sys.exit(0)

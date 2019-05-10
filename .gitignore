@@ -155,3 +155,4 @@ fabric.properties
 
 #report
 report/*.html
+report/**/*.png
