@@ -9,7 +9,10 @@ from springdemo.page.LandingPage import LandingPage
 from BeautifulReport import BeautifulReport
 import time,os
 
-class Test_m0001(unittest.TestCase):
+class Test_M0100_Demo(unittest.TestCase):
+    """
+    Demo Test class
+    """
     def setUp(self):
         self.driver = firefox_browser()
         self.landingPage = LandingPage(self.driver)
@@ -27,6 +30,10 @@ class Test_m0001(unittest.TestCase):
     @unittest.skip("This is demo test case, ignore it.")
     @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_test_case1_error_img')
     def test_case1(self):
+        """
+        demo test case1
+        :return:
+        """
         #open landing page
         self.landingPage.open();
         #country select en_GB

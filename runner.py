@@ -41,5 +41,5 @@ if __name__ == "__main__":
     #custom define BeautifulReport.img_path
     BeautifulReport.img_path = "report/screenshot"
     #Generate Html Report
-    discovr = unittest.defaultTestLoader.discover("./springdemo/test_case", pattern="M*.py")
+    discovr = unittest.defaultTestLoader.discover(".", pattern="M0*.py")
     BeautifulReport(discovr).report(filename=file_name, description="Auto Testing Report", log_path="report")
