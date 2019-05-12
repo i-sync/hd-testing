@@ -24,6 +24,7 @@ class Test_m0001(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
+    @unittest.skip("This is demo test case, ignore it.")
     @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_test_case1_error_img')
     def test_case1(self):
         #open landing page

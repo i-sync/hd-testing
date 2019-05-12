@@ -29,10 +29,9 @@ def get_argv(argv):
     return env
 
 if __name__ == "__main__":
-    #set env
+    #set env from script parameter
     os.environ["env"] = get_argv(sys.argv[1:])
-    now = time.strftime("%Y%m%d-%H%M%S")
-    file_name = "{}-result.html".format(now)
+    file_name = "{}-result.html".format(time.strftime("%Y%m%d-%H%M%S"))
     """
     with open(file_name, 'wb') as f:
         runner = HTMLTestRunner(stream=f, title="Auto Testing Report", description="Windows 10 Firefox")
@@ -41,5 +40,6 @@ if __name__ == "__main__":
     """
     #custom define BeautifulReport.img_path
     BeautifulReport.img_path = "report/screenshot"
+    #Generate Html Report
     discovr = unittest.defaultTestLoader.discover("./springdemo/test_case", pattern="M*.py")
     BeautifulReport(discovr).report(filename=file_name, description="Auto Testing Report", log_path="report")
