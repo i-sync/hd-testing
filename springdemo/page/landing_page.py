@@ -17,10 +17,10 @@ class LandingPage(Page):
         :param driver:
         """
         self.url = "/landing"
-        self.driver = driver
-        self.base_url = current_url()
-        #super(Page,self).__init__(driver, self.base_url)
-        self.elemnt = ElementsDefine()
+        #self.driver = driver
+        #self.base_url = current_url()
+        super(LandingPage, self).__init__(driver, current_url())
+        self.element = ElementsDefine()
 
     def chose_locale(self, locale):
         """
@@ -28,7 +28,7 @@ class LandingPage(Page):
         :param locale:
         :return:
         """
-        self.country_select = self.find_element(*self.elemnt.landing_country_select)
+        self.country_select = self.find_element(*self.element.landing_country_select)
         Select(self.country_select).select_by_value(locale)
 
     def click_continue_button(self):
@@ -36,4 +36,4 @@ class LandingPage(Page):
         click landing page continue button
         :return:
         """
-        self.find_element(*self.elemnt.landing_continue_button).click()
+        self.find_element(*self.element.landing_continue_button).click()

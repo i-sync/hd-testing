@@ -17,7 +17,8 @@ class HomePage(Page):
         :param driver:
         """
         self.url = "/"
-        self.driver = driver
-        self.base_url = current_url()
-        self.elemnt = ElementsDefine()
+        #self.driver = driver
+        #self.base_url = current_url()
+        super(HomePage, self).__init__(driver, current_url())
+        self.element = ElementsDefine()
 
