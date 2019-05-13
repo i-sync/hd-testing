@@ -14,7 +14,7 @@ class Test_M0200_Check_Home_Page(unittest.TestCase):
     LiveWire Home page
     """
     def setUp(self):
-        self.driver = firefox_browser()
+        self.driver = chrome_browser()
         self.homePage = HomePage(self.driver)
     def tearDown(self):
         self.driver.quit()

@@ -11,7 +11,7 @@ import time,os
 
 class Test_M0100_Check_Landing_Page(unittest.TestCase):
     def setUp(self):
-        self.driver = firefox_browser()
+        self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
     def tearDown(self):
         self.driver.quit()
@@ -24,7 +24,7 @@ class Test_M0100_Check_Landing_Page(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    #@unittest.skipUnless(os.environ["env"] == "live", "only check live site")
+    @unittest.skipUnless(os.environ["env"] == "live", "only check live site")
     @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_springdemo_landing_error_img')
     def test_check_landing_page(self):
         """
