@@ -2,6 +2,9 @@
 Page Object, Base Page
 """
 import os
+from contextlib import contextmanager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.expected_conditions import staleness_of
 
 class Page(object):
     '''基础类，用于所有页面的继承'''
@@ -31,3 +34,17 @@ class Page(object):
         return self.driver.find_elements(*loc)
     def script(self, src):
         return self.driver.execute_script(src)
+
+    @contextmanager
+    def wait_for_page_load(self, timeout=30):
+        """
+        wait for page load
+        URL: https://blog.codeship.com/get-selenium-to-wait-for-page-load/
+        :param timeout:
+        :return:
+        """
+        old_page = self.driver.find_element_by_tag_name('html')
+        yield
+        WebDriverWait(self.driver, timeout).until(
+            staleness_of(old_page)
+        )
