@@ -5,11 +5,11 @@ Just for demo.
 
 import unittest
 from driver.browser import *
-from springdemo.page.LandingPage import LandingPage
+from springdemo.page.landing_page import LandingPage
 from BeautifulReport import BeautifulReport
 import time,os
 
-class Test_M0100_Demo(unittest.TestCase):
+class TestCaseDemo(unittest.TestCase):
     """
     Demo Test class
     """

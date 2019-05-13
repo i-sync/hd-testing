@@ -4,12 +4,12 @@ Spring Demo each locale landing page checking.
 
 import unittest
 from driver.browser import *
-from springdemo.page.LandingPage import LandingPage
+from springdemo.page.landing_page import LandingPage
 from BeautifulReport import BeautifulReport
 from springdemo.data.locales import *
 import time,os
 
-class Test_M0100_Check_Landing_Page(unittest.TestCase):
+class TestCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)

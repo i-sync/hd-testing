@@ -6,10 +6,10 @@ import unittest
 from driver.browser import *
 from BeautifulReport import BeautifulReport
 from livewire.data.locales import *
-from livewire.page.HomePage import HomePage
+from livewire.page.home_page import HomePage
 import time,os
 
-class Test_M0200_Check_Home_Page(unittest.TestCase):
+class TestCheckHomePage(unittest.TestCase):
     """
     LiveWire Home page
     """
