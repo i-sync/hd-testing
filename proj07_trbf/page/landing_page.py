@@ -1,11 +1,12 @@
 """
 TRBF Landing Page
 """
-from page.page import Page
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
-from trbf.data.urls import current_url
-from trbf.element.elements_define import ElementsDefine
+
+from page.page import Page
+from proj07_trbf.data.urls import current_url
+from proj07_trbf.element.elements_define import ElementsDefine
 
 class LandingPage(Page):
     """

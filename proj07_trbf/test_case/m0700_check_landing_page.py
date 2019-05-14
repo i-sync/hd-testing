@@ -6,7 +6,8 @@ import time,os
 import unittest
 from driver.browser import *
 from BeautifulReport import BeautifulReport
-from trbf.page.landing_page import LandingPage
+
+from proj07_trbf.page.landing_page import LandingPage
 
 class TestTrbfCheckLandingPage(unittest.TestCase):
     def setUp(self):
