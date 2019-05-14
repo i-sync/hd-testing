@@ -1,14 +1,14 @@
 """
-TRBF DC landing page checking.
+Brochure landing page checking.
 """
 
 import time,os
 import unittest
 from driver.browser import *
 from BeautifulReport import BeautifulReport
-from trbfdc.page.landing_page import LandingPage
+from brochure.page.landing_page import LandingPage
 
-class TestTrbfDcCheckLandingPage(unittest.TestCase):
+class TestBrochureCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
@@ -23,10 +23,10 @@ class TestTrbfDcCheckLandingPage(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_trbfdc_landing_error_img')
-    def test_trbfdc_check_landing_page(self):
+    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_brochure_landing_error_img')
+    def test_brochure_check_landing_page(self):
         """
-        TRBF DC
+        Brochure
         Check landing page
         """
 

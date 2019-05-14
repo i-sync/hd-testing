@@ -1,17 +1,17 @@
 """
-Spring Demo each locale landing page checking.
+Greatestrides homepage checking.
 """
 
 import unittest
 from driver.browser import *
 from BeautifulReport import BeautifulReport
-from livewire.data.locales import *
-from livewire.page.home_page import HomePage
+from greatestrides.data.locales import *
+from greatestrides.page.home_page import HomePage
 import time,os
 
-class TestCheckHomePage(unittest.TestCase):
+class TestGreatestridesCheckHomePage(unittest.TestCase):
     """
-    LiveWire Home page
+    Greatestrides Home page
     """
     def setUp(self):
         self.driver = firefox_browser()
@@ -28,10 +28,10 @@ class TestCheckHomePage(unittest.TestCase):
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
     #@unittest.skipUnless(os.environ["env"] == "live")
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_livewire_landing_error_img')
-    def test_check_home_page(self):
+    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_greatestrides_landing_error_img')
+    def test_greatestrides_check_home_page(self):
         """
-        LiveWire
+        Greatestrides
         Check locale home page
         """
         #check all locale
