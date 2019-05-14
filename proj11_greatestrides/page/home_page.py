@@ -1,11 +1,12 @@
 """
 Greatestrides Home Page
 """
-from page.page import Page
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
-from greatestrides.data.urls import current_url
-from greatestrides.element.elements_define import ElementsDefine
+
+from page.page import Page
+from proj11_greatestrides.data.urls import current_url
+from proj11_greatestrides.element.elements_define import ElementsDefine
 
 class HomePage(Page):
     """

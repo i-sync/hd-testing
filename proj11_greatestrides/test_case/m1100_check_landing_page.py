@@ -2,12 +2,13 @@
 Greatestrides homepage checking.
 """
 
+import time,os
 import unittest
 from driver.browser import *
 from BeautifulReport import BeautifulReport
-from greatestrides.data.locales import *
-from greatestrides.page.home_page import HomePage
-import time,os
+
+from proj11_greatestrides.data.locales import *
+from proj11_greatestrides.page.home_page import HomePage
 
 class TestGreatestridesCheckHomePage(unittest.TestCase):
     """
