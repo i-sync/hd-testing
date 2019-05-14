@@ -1,11 +1,12 @@
 """
 Brochure Landing Page
 """
-from page.page import Page
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
-from brochure.data.urls import current_url
-from brochure.element.elements_define import ElementsDefine
+
+from page.page import Page
+from proj09_brochure.data.urls import current_url
+from proj09_brochure.element.elements_define import ElementsDefine
 
 class LandingPage(Page):
     """

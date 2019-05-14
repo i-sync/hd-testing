@@ -6,7 +6,8 @@ import time,os
 import unittest
 from driver.browser import *
 from BeautifulReport import BeautifulReport
-from brochure.page.landing_page import LandingPage
+
+from proj09_brochure.page.landing_page import LandingPage
 
 class TestBrochureCheckLandingPage(unittest.TestCase):
     def setUp(self):
