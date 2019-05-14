@@ -1,11 +1,11 @@
 """
 Spring Demo Landing Page
 """
-from page.page import Page
-from springdemo.element.elements_define import ElementsDefine
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
-from springdemo.data.urls import current_url
+
+from page.page import Page
+from proj02_springdemo.data.urls import current_url
+from proj02_springdemo.element.elements_define import ElementsDefine
 
 class LandingPage(Page):
     """

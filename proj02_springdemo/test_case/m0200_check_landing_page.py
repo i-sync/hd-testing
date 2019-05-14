@@ -2,14 +2,15 @@
 Spring Demo each locale landing page checking.
 """
 
+import time
 import unittest
 from driver.browser import *
-from springdemo.page.landing_page import LandingPage
 from BeautifulReport import BeautifulReport
-from springdemo.data.locales import *
-import time,os
 
-class TestCheckLandingPage(unittest.TestCase):
+from proj02_springdemo.data.locales import *
+from proj02_springdemo.page.landing_page import LandingPage
+
+class TestSpringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
@@ -24,9 +25,8 @@ class TestCheckLandingPage(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    @unittest.skipUnless(os.environ["env"] == "live", "only check live site")
     @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_springdemo_landing_error_img')
-    def test_check_landing_page(self):
+    def test_springdemo_check_landing_page(self):
         """
         Spring Demo
         Check locale landing page
