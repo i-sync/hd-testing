@@ -2,10 +2,9 @@
 Touring Demo(My19 Recommission) Landing Page
 """
 from page.page import Page
-from botk.element.elements_define import ElementsDefine
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
-from botk.data.urls import current_url
+from proj01_botk.data.urls import current_url
+from proj01_botk.element.elements_define import ElementsDefine
 
 class LandingPage(Page):
     """

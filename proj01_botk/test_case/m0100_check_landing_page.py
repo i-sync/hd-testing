@@ -1,12 +1,12 @@
 """
-Touring Demo(My19 Recommission) landing page checking.
+BOTK 2019 landing page checking.
 """
 
 import time,os
 import unittest
 from driver.browser import *
 from BeautifulReport import BeautifulReport
-from botk.page.landing_page import LandingPage
+from proj01_botk.page.landing_page import LandingPage
 
 class TestBotkCheckLandingPage(unittest.TestCase):
     def setUp(self):
