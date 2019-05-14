@@ -2,14 +2,15 @@
 Spring Demo each locale landing page checking.
 """
 
+import time,os
 import unittest
 from driver.browser import *
 from BeautifulReport import BeautifulReport
-from livewire.data.locales import *
-from livewire.page.home_page import HomePage
-import time,os
 
-class TestCheckHomePage(unittest.TestCase):
+from proj03_livewire.data.locales import *
+from proj03_livewire.page.home_page import HomePage
+
+class TestLivewireCheckHomePage(unittest.TestCase):
     """
     LiveWire Home page
     """
@@ -29,7 +30,7 @@ class TestCheckHomePage(unittest.TestCase):
 
     #@unittest.skipUnless(os.environ["env"] == "live")
     @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_livewire_landing_error_img')
-    def test_check_home_page(self):
+    def test_livewire_check_home_page(self):
         """
         LiveWire
         Check locale home page
