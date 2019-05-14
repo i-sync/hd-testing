@@ -1,15 +1,16 @@
 """
-Touring each locale landing page checking.
+Softail landing page checking.
 """
 
+import time,os
 import unittest
 from driver.browser import *
-from softtail.page.landing_page import LandingPage
 from BeautifulReport import BeautifulReport
-from softtail.data.locales import *
-import time,os
 
-class TestCheckLandingPage(unittest.TestCase):
+from proj06_softail.data.locales import *
+from proj06_softail.page.landing_page import LandingPage
+
+class TestSoftailCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = chrome_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
@@ -24,11 +25,10 @@ class TestCheckLandingPage(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    # @unittest.skipUnless(os.environ["env"] == "live", "only check live site")
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_touring_landing_error_img')
-    def test_check_landing_page(self):
+    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_softail_landing_error_img')
+    def test_softail_check_landing_page(self):
         """
-        Touring
+        Softail
         Check locale landing page
         """
         #check all of the locales
