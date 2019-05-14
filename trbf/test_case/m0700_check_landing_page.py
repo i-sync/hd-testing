@@ -1,14 +1,14 @@
 """
-Touring Demo(My19 Recommission) landing page checking.
+TRBF landing page checking.
 """
 
 import time,os
 import unittest
 from driver.browser import *
 from BeautifulReport import BeautifulReport
-from botk.page.landing_page import LandingPage
+from trbf.page.landing_page import LandingPage
 
-class TestBotkCheckLandingPage(unittest.TestCase):
+class TestTrbfCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
@@ -23,10 +23,10 @@ class TestBotkCheckLandingPage(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_botk_landing_error_img')
-    def test_botk_check_landing_page(self):
+    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_trbf_landing_error_img')
+    def test_trbf_check_landing_page(self):
         """
-        BOTK 2019
+        TRBF
         Check landing page
         """
 
@@ -40,8 +40,6 @@ class TestBotkCheckLandingPage(unittest.TestCase):
             self.landingPage.open();
             #country select
             self.landingPage.chose_locale(locale)
-            #button click
-            self.landingPage.click_continue_button()
             #check
             self.assertIn(locale, self.driver.current_url)
 
