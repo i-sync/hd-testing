@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 class ElementsDefine(object):
     """
-    Touring Element Define
+    Softtail Element Define
     """
 
     def __init__(self):
