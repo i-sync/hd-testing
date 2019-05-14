@@ -1,3 +1,4 @@
 {
-  "dev": "http://hdguest:MLP@2017@demo-campaign-2019.proferochina.com", "staging":"https://hdguest:MLP@2017@staging.freedomdays.harley-davidson.com", "live":"https://freedomdays.harley-davidson.com"
+  "dev": "http://hdguest:MLP@2017@ride-free.proferochina.com", "staging":"https://hdguest:MLP@2017@uat-registertouring.harley-davidson.com.harley-davidson.com", "live":"https://registertouring.harley-davidson.com"
+
 }

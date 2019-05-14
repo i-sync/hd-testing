@@ -1,5 +1,5 @@
 """
-Spring Demo each locale landing page checking.
+Touring each locale landing page checking.
 """
 
 import unittest

@@ -35,7 +35,7 @@ class TestCaseDemo(unittest.TestCase):
         :return:
         """
         #open landing page
-        self.landingPage.open();
+        self.landingPage.open()
         #country select en_GB
         self.landingPage.chose_locale("en_GB")
         #click_button

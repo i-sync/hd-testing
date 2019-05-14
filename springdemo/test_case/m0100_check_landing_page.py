@@ -44,7 +44,7 @@ class TestCheckLandingPage(unittest.TestCase):
         #check closing locale
         for locale in Closing:
             #open landing page
-            self.landingPage.open();
+            self.landingPage.open()
             #country select
             self.landingPage.chose_locale(locale)
             #click_button

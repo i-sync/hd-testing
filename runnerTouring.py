@@ -18,11 +18,11 @@ def get_argv(argv):
     try:
         opts, args = getopt.getopt(argv,"he:",["env="])
     except getopt.GetoptError:
-      print('runner.py -e <environment: dev, staging, live>')
+      print('runnerTouring.py -e <environment: dev, staging, live>')
       sys.exit(2)
     for opt, arg in opts:
       if opt in ("-h", "--help"):
-         print('runner.py -e <environment: dev, staging, live>')
+         print('runnerTouring.py -e <environment: dev, staging, live>')
          sys.exit()
       elif opt in ("-e", "--env"):
          env = arg
@@ -35,11 +35,11 @@ if __name__ == "__main__":
     """
     with open(file_name, 'wb') as f:
         runner = HTMLTestRunner(stream=f, title="Auto Testing Report", description="Windows 10 Firefox")
-        discovr = unittest.defaultTestLoader.discover("./springdemo/test_case", pattern="M*.py")
+        discovr = unittest.defaultTestLoader.discover("./touring/test_case", pattern="T*.py")
         runner.run(discovr)
     """
     #custom define BeautifulReport.img_path
     BeautifulReport.img_path = "report/screenshot"
     #Generate Html Report
-    discovr = unittest.defaultTestLoader.discover(".", pattern="B0*.py")
+    discovr = unittest.defaultTestLoader.discover(".", pattern="m0T0100_check_landing_page.py")
     BeautifulReport(discovr).report(filename=file_name, description="Auto Testing Report", log_path="report")

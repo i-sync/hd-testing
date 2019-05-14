@@ -10,7 +10,7 @@ import os,sys,getopt
 def get_argv(argv):
     """
     get script parameters : dev, staging, live
-    eg: python3 runner.py -e dev
+    eg: python runner.py -e dev
     :param argv:
     :return:
     """
