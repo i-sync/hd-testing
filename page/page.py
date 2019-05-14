@@ -22,7 +22,7 @@ class Page(object):
     def _open(self,url):
         url = self.base_url + url
         self.driver.get(url)
-        if os.environ["env"] == "live":
+        if "env" in os.environ and os.environ["env"] == "live":
             assert self.on_page(),"Did not land on %s" %url
     #open()方法通过调用_open()方法打开URL网站
     def open(self):
