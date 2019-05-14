@@ -1,15 +1,16 @@
 """
 Touring Demo Landing Page
 """
-from page.page import Page
-from touring.element.elements_define import ElementsDefine
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
-from touring.data.urls import current_url
+
+from page.page import Page
+from proj05_touring.data.urls import current_url
+from proj05_touring.element.elements_define import ElementsDefine
 
 class LandingPage(Page):
     """
-    touring Landing Page
+    Touring Landing Page
     """
     def __init__(self, driver):
         """
@@ -17,8 +18,6 @@ class LandingPage(Page):
         :param driver:
         """
         self.url = "/landing"
-        #self.driver = driver
-        #self.base_url = current_url()
         super(LandingPage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
 

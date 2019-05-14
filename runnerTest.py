@@ -35,7 +35,7 @@ if __name__ == "__main__":
     """
     with open(file_name, 'wb') as f:
         runner = HTMLTestRunner(stream=f, title="Auto Testing Report", description="Windows 10 Firefox")
-        discovr = unittest.defaultTestLoader.discover("./touring/test_case", pattern="T*.py")
+        discovr = unittest.defaultTestLoader.discover("./proj05_touring/test_case", pattern="T*.py")
         runner.run(discovr)
     """
     #custom define BeautifulReport.img_path
