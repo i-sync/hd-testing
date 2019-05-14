@@ -1,11 +1,12 @@
 """
 Touring Demo(My19 Recommission) Landing Page
 """
-from page.page import Page
-from touringdemo.element.elements_define import ElementsDefine
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
-from touringdemo.data.urls import current_url
+
+from page.page import Page
+from proj04_touringdemo.data.urls import current_url
+from proj04_touringdemo.element.elements_define import ElementsDefine
 
 class LandingPage(Page):
     """
