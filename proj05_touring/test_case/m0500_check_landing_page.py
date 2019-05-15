@@ -26,19 +26,29 @@ class TestTouringCheckLandingPage(unittest.TestCase):
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
     @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_touring_landing_error_img')
+    # @BeautifulReport.add_test_img(time.ctime()+'_touring_landing_error_img')
+
     def test_touring_check_landing_page(self):
         """
         Touring
         Check locale landing page
+        the locales are closing now on live
         """
-        #check all of the locales
+        #check all of the locales()
         for locale in All_Locales:
             #open landing page
             self.landingPage.open();
             #country select
             self.landingPage.chose_locale(locale)
-            self.assertIn(locale, self.driver.current_url)
-
+        #     self.assertIn(locale, self.driver.current_url)
+        # #check all of the closing locales
+        # for locale in Closing:
+        #     #open landing page
+        #     self.landingPage.open();
+        #     #coutry select
+        #     self.landingPage.chose_locale(locale)
+            part_url = "harley-davidson\.com\/.*\/{}\/index\.html".format(locale[:2])
+            self.assertIn(self.driver.current_url,part_url)
 
 if __name__ == "__main__":
     unittest.main()
