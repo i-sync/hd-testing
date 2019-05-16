@@ -4,11 +4,13 @@ Spring Demo each locale landing page checking.
 
 import time,os
 import unittest
+import pytest
 from driver.browser import *
 
 from proj03_livewire.data.locales import *
 from proj03_livewire.page.home_page import HomePage
 
+@pytest.mark.live_checker
 class TestLivewireCheckHomePage(unittest.TestCase):
     """
     LiveWire Home page

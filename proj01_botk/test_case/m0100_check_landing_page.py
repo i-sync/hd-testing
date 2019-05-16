@@ -9,6 +9,7 @@ import pytest
 from driver.browser import *
 from proj01_botk.page.landing_page import LandingPage
 
+@pytest.mark.live_checker
 class TestBotkCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)

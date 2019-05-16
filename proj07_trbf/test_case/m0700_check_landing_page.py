@@ -4,10 +4,12 @@ TRBF landing page checking.
 
 import time,os
 import unittest
+import pytest
 from driver.browser import *
 
 from proj07_trbf.page.landing_page import LandingPage
 
+@pytest.mark.live_checker
 class TestTrbfCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)

@@ -4,11 +4,13 @@ Touring each locale landing page checking.
 
 import time,os
 import unittest
+import pytest
 from driver.browser import *
 
 from proj05_touring.data.locales import *
 from proj05_touring.page.landing_page import LandingPage
 
+@pytest.mark.live_checker
 class TestTouringCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = chrome_browser(headless=False)

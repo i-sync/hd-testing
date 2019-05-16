@@ -4,11 +4,13 @@ Softail landing page checking.
 
 import time,os
 import unittest
+import pytest
 from driver.browser import *
 
 from proj06_softail.data.locales import *
 from proj06_softail.page.landing_page import LandingPage
 
+@pytest.mark.live_checker
 class TestSoftailCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = chrome_browser(headless=False)

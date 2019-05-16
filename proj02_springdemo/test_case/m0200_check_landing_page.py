@@ -4,11 +4,13 @@ Spring Demo each locale landing page checking.
 
 import time
 import unittest
+import pytest
 from driver.browser import *
 
 from proj02_springdemo.data.locales import *
 from proj02_springdemo.page.landing_page import LandingPage
 
+@pytest.mark.live_checker
 class TestSpringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)

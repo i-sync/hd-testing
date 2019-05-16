@@ -4,11 +4,13 @@ Greatestrides homepage checking.
 
 import time,os
 import unittest
+import pytest
 from driver.browser import *
 
 from proj11_greatestrides.data.locales import *
 from proj11_greatestrides.page.home_page import HomePage
 
+@pytest.mark.live_checker
 class TestGreatestridesCheckHomePage(unittest.TestCase):
     """
     Greatestrides Home page
