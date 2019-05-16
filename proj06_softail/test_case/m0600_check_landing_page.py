@@ -5,7 +5,6 @@ Softail landing page checking.
 import time,os
 import unittest
 from driver.browser import *
-from BeautifulReport import BeautifulReport
 
 from proj06_softail.data.locales import *
 from proj06_softail.page.landing_page import LandingPage
@@ -25,7 +24,6 @@ class TestSoftailCheckLandingPage(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_softail_landing_error_img')
     def test_softail_check_landing_page(self):
         """
         Softail

@@ -5,7 +5,6 @@ Greatestrides homepage checking.
 import time,os
 import unittest
 from driver.browser import *
-from BeautifulReport import BeautifulReport
 
 from proj11_greatestrides.data.locales import *
 from proj11_greatestrides.page.home_page import HomePage
@@ -28,8 +27,6 @@ class TestGreatestridesCheckHomePage(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    #@unittest.skipUnless(os.environ["env"] == "live")
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_greatestrides_landing_error_img')
     def test_greatestrides_check_home_page(self):
         """
         Greatestrides
