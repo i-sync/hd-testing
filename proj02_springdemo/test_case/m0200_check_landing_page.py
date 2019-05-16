@@ -5,7 +5,6 @@ Spring Demo each locale landing page checking.
 import time
 import unittest
 from driver.browser import *
-from BeautifulReport import BeautifulReport
 
 from proj02_springdemo.data.locales import *
 from proj02_springdemo.page.landing_page import LandingPage
@@ -17,15 +16,6 @@ class TestSpringDemoCheckLandingPage(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def save_img(self, img_name):
-        """
-            传入一个img_name, 并存储到默认的文件路径下
-        :param img_name:
-        :return:
-        """
-        self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
-
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_springdemo_landing_error_img')
     def test_springdemo_check_landing_page(self):
         """
         Spring Demo

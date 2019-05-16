@@ -1,2 +1,3 @@
-#https://github.com/TesterlifeRaymond/BeautifulReport
-BeautifulReport
+pytest
+pytest-html
+pytest-xdist

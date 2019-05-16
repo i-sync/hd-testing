@@ -5,7 +5,6 @@ Touring each locale landing page checking.
 import time,os
 import unittest
 from driver.browser import *
-from BeautifulReport import BeautifulReport
 
 from proj05_touring.data.locales import *
 from proj05_touring.page.landing_page import LandingPage
@@ -24,9 +23,6 @@ class TestTouringCheckLandingPage(unittest.TestCase):
         :return:
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
-
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_touring_landing_error_img')
-    # @BeautifulReport.add_test_img(time.ctime()+'_touring_landing_error_img')
 
     def test_touring_check_landing_page(self):
         """

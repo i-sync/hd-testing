@@ -5,7 +5,6 @@ Touring Demo(My19 Recommission) landing page checking.
 import time,os
 import unittest
 from driver.browser import *
-from BeautifulReport import BeautifulReport
 
 from proj04_touringdemo.data.locales import *
 from proj04_touringdemo.page.landing_page import LandingPage
@@ -25,7 +24,6 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_touringdemo_landing_error_img')
     def test_touringdemo_check_landing_page(self):
         """
         Touring Demo(My19 Recommission)

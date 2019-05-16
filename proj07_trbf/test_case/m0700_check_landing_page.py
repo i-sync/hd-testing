@@ -5,7 +5,6 @@ TRBF landing page checking.
 import time,os
 import unittest
 from driver.browser import *
-from BeautifulReport import BeautifulReport
 
 from proj07_trbf.page.landing_page import LandingPage
 
@@ -24,7 +23,6 @@ class TestTrbfCheckLandingPage(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    @BeautifulReport.add_test_img(time.strftime("%Y%m%d-%H%M%S")+'_trbf_landing_error_img')
     def test_trbf_check_landing_page(self):
         """
         TRBF
