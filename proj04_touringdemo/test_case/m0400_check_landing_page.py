@@ -28,13 +28,12 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
 
     def test_touringdemo_check_landing_page(self):
         """
-        Touring Demo(My19 Recommission)
-        Check landing page
+        04. Touring Demo(My19 Recommission) Check landing page
         """
         #check online locale
         for locale in All_Locales + Special:
             #open landing page
-            self.landingPage.open();
+            self.landingPage.open()
             #country select
             self.landingPage.chose_locale(locale)
 

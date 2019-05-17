@@ -27,8 +27,7 @@ class TestTrbfDcCheckLandingPage(unittest.TestCase):
 
     def test_trbfdc_check_landing_page(self):
         """
-        TRBF DC
-        Check landing page
+        08. TRBF DC Check landing page
         """
 
         self.landingPage.open()
@@ -38,7 +37,7 @@ class TestTrbfDcCheckLandingPage(unittest.TestCase):
         # check locale
         for locale in locales:
             #open landing page
-            self.landingPage.open();
+            self.landingPage.open()
             #country select
             self.landingPage.chose_locale(locale)
             #check

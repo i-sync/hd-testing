@@ -19,8 +19,7 @@ class TestBotkCheckLandingPage(unittest.TestCase):
 
     def test_botk_check_landing_page(self):
         """
-        BOTK 2019
-        Check landing page
+        01. BOTK 2019 Check landing page
         """
 
         self.landingPage.open()
@@ -30,7 +29,7 @@ class TestBotkCheckLandingPage(unittest.TestCase):
         # check locale
         for locale in locales:
             #open landing page
-            self.landingPage.open();
+            self.landingPage.open()
             #country select
             self.landingPage.chose_locale(locale)
             #button click
