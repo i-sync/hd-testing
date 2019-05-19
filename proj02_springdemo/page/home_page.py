@@ -30,3 +30,12 @@ class HomePage(Page):
         """
         self.social_links = self.find_elements(*self.element.homepage_social_link)
         return [a.get_attribute("href") for a in self.social_links if a.get_attribute("href")]
+
+    def get_bike_list(self, locale):
+        """
+        Get HomePage Bike List
+        :param locale:
+        :return:
+        """
+        self.bike_list = self.find_elements(*self.element.homepage_bike_list)
+        return [li.get_attribute("data-code") for li in self.bike_list if li.get_attribute("data-code")]
