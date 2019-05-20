@@ -24,22 +24,5 @@ class LandingPage(Page):
         Get all locales
         :return:
         """
-        self.country_options = self.find_elements(*self.element.landing_country_options)
+        self.country_options = self.find_elements(self.element.landing_country_options)
         return [option.get_attribute("value") for option in self.country_options if option.get_attribute("value")]
-
-    def chose_locale(self, locale):
-        """
-        chose country select locale
-        :param locale:
-        :return:
-        """
-        self.country_select = self.find_element(*self.element.landing_country_select)
-        Select(self.country_select).select_by_value(locale)
-
-    def click_continue_button(self):
-        """
-        click landing page continue button
-        :return:
-        """
-        with self.wait_for_page_load(10):
-            self.find_element(*self.element.landing_continue_button).click()

@@ -27,9 +27,9 @@ class TestSpringDemoCheckLandingPage(unittest.TestCase):
             #open landing page
             self.landingPage.open()
             #country select
-            self.landingPage.chose_locale(locale)
+            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale)
             #click_button
-            self.landingPage.click_continue_button()
+            self.landingPage.click_element(self.landingPage.element.landing_continue_button, refresh_page=True)
             self.assertIn(locale, self.driver.current_url)
 
         #check closing locale
@@ -37,9 +37,9 @@ class TestSpringDemoCheckLandingPage(unittest.TestCase):
             #open landing page
             self.landingPage.open()
             #country select
-            self.landingPage.chose_locale(locale)
+            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale)
             #click_button
-            self.landingPage.click_continue_button()
+            self.landingPage.click_element(self.landingPage.element.landing_continue_button, refresh_page=True)
             part_url = "harley-davidson\.com\/.*\/{}\/index\.html".format(locale[:2])
             self.assertRegex(self.driver.current_url, part_url)
 if __name__ == "__main__":

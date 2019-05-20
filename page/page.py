@@ -3,6 +3,7 @@ Page Object, Base Page
 """
 import os
 from contextlib import contextmanager
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import staleness_of
 
@@ -28,12 +29,47 @@ class Page(object):
     def open(self):
         self._open(self.url)
     #重写定位元素的方法，loc==(By.NAME,"email"),是一个元组，Python方法中入参是元组时需要在前面加*
-    def find_element(self,*loc):
+    def find_element(self,loc):
         return self.driver.find_element(*loc)
-    def find_elements(self,*loc):
+    def find_elements(self,loc):
         return self.driver.find_elements(*loc)
     def script(self, src):
         return self.driver.execute_script(src)
+
+    #click element
+    def click_element(self, loc, refresh_page=False, timeout=30):
+        if refresh_page:
+            with self.wait_for_page_load(timeout):
+                self.find_element(loc).click()
+        else:
+            self.find_element(loc).click()
+
+    #select element
+    def select_element_by_value(self, loc, value, refresh_page=False, timeoue=30):
+        if refresh_page:
+            with self.wait_for_page_load(timeoue):
+                Select(self.find_element(loc)).select_by_value(value)
+        else:
+            Select(self.find_element(loc)).select_by_value(value)
+    #select element
+    def select_element_by_index(self, loc, index, refresh_page=False, timeoue=30):
+        if refresh_page:
+            with self.wait_for_page_load(timeoue):
+                Select(self.find_element(loc)).select_by_index(index)
+        else:
+            Select(self.find_element(loc)).select_by_index(index)
+    #select element
+    def select_element_by_visible_text(self, loc, text, refresh_page=False, timeoue=30):
+        if refresh_page:
+            with self.wait_for_page_load(timeoue):
+                Select(self.find_element(loc)).select_by_visible_text(text)
+        else:
+            Select(self.find_element(loc)).select_by_visible_text(text)
+
+    #textbox input value
+    def input_element_value(self, loc, value):
+        self.find_element(loc).clear()
+        self.find_element(loc).send_keys(value)
 
     @contextmanager
     def wait_for_page_load(self, timeout=30):
