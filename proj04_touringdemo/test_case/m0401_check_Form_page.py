@@ -17,7 +17,7 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
-        self.bookingPage = BookingPage()
+        self.bookingPage = BookingPage(self.driver)
     def tearDown(self):
         self.driver.quit()
 
@@ -32,10 +32,12 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def test_touringdemo_check_landing_page(self):
         """
         Touring Demo(My19 Recommission)
-        Check landing page
+        step:
+        1.select one locale on landing page
+        2.click book a ride test button
         """
         #check online locale
-        for locale in All_Locales + Special:
+        for locale in FromLocale:
             #open landing page
             self.landingPage.open();
             #country select
@@ -44,6 +46,30 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             self.assertIn(locale, self.driver.current_url)
             # select book button on home page
             self.bookingPage.choose_bookButton()
+            # submit form when form is empty
+            self.bookingPage.choose_RequestTestRideButton()
+    def test_touringdemo_check_form_page(self):
+         """
+         Touring Demo(My19 Recommission)
+         Auto submit booking form
+         step:
+         1. choose first bike on home
+         2. finished form
+         3. submit form
+         :return:
+         """
+
+
+    def test_touringdemo_check_form_page(self):
+         """
+         Touring Demo(My19 Recommission)
+         Auto submit booking form
+         step:
+         1. choose first bike on home
+         2. submit form when form is empty
+         3. assert the error message
+         :return:
+         """
 
 
 if __name__ == "__main__":

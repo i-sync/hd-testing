@@ -5,3 +5,7 @@ All_Locales = ["nl_BE", "fr_BE", "en_CA", "fr_CA", "cs_CZ", "da_DK", "de_DE", "e
 
 # only homepage
 Special = ["en_AU"]
+
+# en_GB locale
+FromLocale = ["en_GB"]
+
