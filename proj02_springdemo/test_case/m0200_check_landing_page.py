@@ -20,13 +20,12 @@ class TestSpringDemoCheckLandingPage(unittest.TestCase):
 
     def test_springdemo_check_landing_page(self):
         """
-        Spring Demo
-        Check locale landing page
+        02. Spring Demo Check locale landing page
         """
         #check online locale
         for locale in Online:
             #open landing page
-            self.landingPage.open();
+            self.landingPage.open()
             #country select
             self.landingPage.chose_locale(locale)
             #click_button

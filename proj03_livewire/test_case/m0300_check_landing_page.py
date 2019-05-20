@@ -31,14 +31,13 @@ class TestLivewireCheckHomePage(unittest.TestCase):
 
     def test_livewire_check_home_page(self):
         """
-        LiveWire
-        Check locale home page
+        03. LiveWire Check locale home page
         """
         #check all locale
         for locale in All_Locales:
             #open home page
             self.homePage.url = "/{}".format(locale)
-            self.homePage.open();
+            self.homePage.open()
             #check url
             self.assertIn(locale, self.driver.current_url)
 

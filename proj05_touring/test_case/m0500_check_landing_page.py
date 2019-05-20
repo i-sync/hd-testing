@@ -13,7 +13,7 @@ from proj05_touring.page.landing_page import LandingPage
 @pytest.mark.live_checker
 class TestTouringCheckLandingPage(unittest.TestCase):
     def setUp(self):
-        self.driver = chrome_browser(headless=False)
+        self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
     def tearDown(self):
         self.driver.quit()
@@ -28,25 +28,22 @@ class TestTouringCheckLandingPage(unittest.TestCase):
 
     def test_touring_check_landing_page(self):
         """
-        Touring
-        Check locale landing page
-        the locales are closing now on live
+        05. Touring Check locale landing page
         """
+
+        self.landingPage.open()
+        # get all locales from landing page
+        locales = self.landingPage.get_all_locales()
+
         #check all of the locales()
-        for locale in All_Locales:
+        for locale in locales:
             #open landing page
-            self.landingPage.open();
+            self.landingPage.open()
             #country select
             self.landingPage.chose_locale(locale)
-        #     self.assertIn(locale, self.driver.current_url)
-        # #check all of the closing locales
-        # for locale in Closing:
-        #     #open landing page
-        #     self.landingPage.open();
-        #     #coutry select
-        #     self.landingPage.chose_locale(locale)
+            #check url if correct
             part_url = "harley-davidson\.com\/.*\/{}\/index\.html".format(locale[:2])
-            self.assertIn(self.driver.current_url,part_url)
+            self.assertRegex(self.driver.current_url,part_url)
 
 if __name__ == "__main__":
     unittest.main()

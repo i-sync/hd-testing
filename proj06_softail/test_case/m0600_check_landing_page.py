@@ -13,7 +13,7 @@ from proj06_softail.page.landing_page import LandingPage
 @pytest.mark.live_checker
 class TestSoftailCheckLandingPage(unittest.TestCase):
     def setUp(self):
-        self.driver = chrome_browser(headless=False)
+        self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
     def tearDown(self):
         self.driver.quit()
@@ -28,17 +28,24 @@ class TestSoftailCheckLandingPage(unittest.TestCase):
 
     def test_softail_check_landing_page(self):
         """
-        Softail
-         the locales are closing now on live
+        06. Softail Check locale landing page
         """
+
+        self.landingPage.open()
+        # get all locales from landing page
+        locales = self.landingPage.get_all_locales()
+
         #check all of the locales()
-        for locale in All_Locales:
+        for locale in locales:
             #open landing page
-            self.landingPage.open();
+            self.landingPage.open()
             #country select
             self.landingPage.chose_locale(locale)
-            part_url = "harley-davidson\.com\/.*\/{}\/index\.html".format(locale[:2])
-            self.assertIn(self.driver.current_url,part_url)
+            if locale in Online:
+                self.assertIn(locale, self.driver.current_url)
+            else:
+                part_url = "harley-davidson\.com\/.*\/{}\/index\.html".format(locale[:2])
+                self.assertRegex(self.driver.current_url,part_url)
 
 if __name__ == "__main__":
     unittest.main()

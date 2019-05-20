@@ -31,14 +31,13 @@ class TestGreatestridesCheckHomePage(unittest.TestCase):
 
     def test_greatestrides_check_home_page(self):
         """
-        Greatestrides
-        Check locale home page
+        11. Greatestrides Check locale home page
         """
         #check all locale
         for locale in All_Locales:
             #open home page
             self.homePage.url = "/{}".format(locale)
-            self.homePage.open();
+            self.homePage.open()
             #check url
             self.assertIn(locale, self.driver.current_url)
 

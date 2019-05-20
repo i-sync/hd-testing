@@ -11,5 +11,5 @@ class ElementsDefine(object):
         """
         #landing
         self.landing_country_select = (By.CSS_SELECTOR, "select.common_form-select") #country select
-
+        self.landing_country_options = (By.CSS_SELECTOR, "select.common_form-select option") #country select option
         #booking

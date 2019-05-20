@@ -27,8 +27,7 @@ class TestBrochureCheckLandingPage(unittest.TestCase):
 
     def test_brochure_check_landing_page(self):
         """
-        Brochure
-        Check landing page
+        09. Brochure Check landing page
         """
 
         self.landingPage.open()
@@ -38,7 +37,7 @@ class TestBrochureCheckLandingPage(unittest.TestCase):
         # check locale
         for locale in locales:
             #open landing page
-            self.landingPage.open();
+            self.landingPage.open()
             #country select
             self.landingPage.chose_locale(locale)
             #check
