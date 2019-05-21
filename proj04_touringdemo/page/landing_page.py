@@ -1,8 +1,6 @@
 """
 Touring Demo(My19 Recommission) Landing Page
 """
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.select import Select
 
 from page.page import Page
 from proj04_touringdemo.data.urls import current_url

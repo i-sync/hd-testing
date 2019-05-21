@@ -2,16 +2,14 @@
 Touring Demo(My19 Recommission) landing page checking.
 """
 
-import time,os
 import unittest
 import pytest
 
 from driver.browser import *
 
-from proj04_touringdemo.data.locales import *
 from proj04_touringdemo.page.landing_page import LandingPage
 
-@pytest.mark.live_checker
+# @pytest.mark.my19R
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)

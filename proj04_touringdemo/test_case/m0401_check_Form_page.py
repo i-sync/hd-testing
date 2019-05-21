@@ -12,7 +12,7 @@ from proj04_touringdemo.data.locales import *
 from proj04_touringdemo.page.landing_page import LandingPage
 from proj04_touringdemo.page.booking_page import BookingPage
 
-@pytest.mark.live_checker
+@pytest.mark.my19R
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)
@@ -41,14 +41,10 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             self.bookingPage.click_element(self.bookingPage.element.choose_book_button,refresh_page=True)
             # select text on bike top
             self.bookingPage.click_element(self.bookingPage.element.text_on_bike,refresh_page=True)
-            # self.bookingPage.click_element(self.bookingPage.element.find_bikes,refresh_page=True)
             # choose first bike on home
-        # with self.wait_for_page_load(30):
             bike_list = self.bookingPage.get_bike_list()
-            bike_list = self.bookingPage.find_element_refresh_page(self.bookingPage.get_bike_list(),refresh_page=True)
             print(bike_list)
             self.bookingPage.click_element(self)
-
             bike_list[0].click()
             # choose first map
             map_list = self.bookingPage.get_map_list()
