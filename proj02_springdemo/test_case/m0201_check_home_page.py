@@ -37,7 +37,6 @@ class TestSpringDemoCheckHomePage(unittest.TestCase):
             for sl in social_links:
                 self.assertTrue(sl in social_link_matrix[locale])
 
-    @pytest.mark.debug
     def test_springdemo_check_bikelist(self):
         """
         Spring Demo Homepage check bike list
