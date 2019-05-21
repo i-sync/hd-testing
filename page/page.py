@@ -43,6 +43,13 @@ class Page(object):
                 self.find_element(loc).click()
         else:
             self.find_element(loc).click()
+    #find element
+    def find_element_refresh_page(self, loc, refresh_page=False, timeout=30):
+        if refresh_page:
+            with self.wait_for_page_load(timeout):
+                self.find_element(loc)
+        else:
+            self.find_element(loc)
 
     #select element
     def select_element_by_value(self, loc, value, refresh_page=False, timeoue=30):

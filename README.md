@@ -17,6 +17,9 @@ This README would normally document whatever steps are necessary to get your app
 * How to run tests
 * Deployment instructions
 
+#### 编码规范
+* PEP8 Python 编码规范,参考文档 https://www.jianshu.com/p/52f4416c267d t6
+
 #### 如何运行
 * 安装依赖包`pip install -r requirements.txt`
 * 运行所有TestCase `pytest --env=live`, 参数`env`可选择`dev/staging/live`, 默认`dev`

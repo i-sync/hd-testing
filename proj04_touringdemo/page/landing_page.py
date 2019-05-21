@@ -20,13 +20,10 @@ class LandingPage(Page):
         self.url = "/landing"
         super(LandingPage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
-
-    def chose_locale(self, locale):
+    def get_all_locales(self):
         """
-        chose country select locale
-        :param locale:
+        Get all locales
         :return:
         """
-        self.country_select = self.find_element(*self.element.landing_country_select)
-        with self.wait_for_page_load(10):
-            Select(self.country_select).select_by_value(locale)
+        self.country_options = self.find_elements(self.element.landing_country_options)
+        return [option.get_attribute("value") for option in self.country_options if option.get_attribute("value")]
