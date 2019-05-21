@@ -97,3 +97,6 @@ class Page(object):
         WebDriverWait(self.driver, timeout).until(
             staleness_of(old_page)
         )
+    #wait page element
+    def wait_for_page_element(self,timeout,loc):
+        WebDriverWait(self.driver,timeout).until(loc)

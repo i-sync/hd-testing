@@ -33,7 +33,5 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale)
             # check
             self.assertIn(locale, self.driver.current_url)
-
-
 if __name__ == "__main__":
     unittest.main()

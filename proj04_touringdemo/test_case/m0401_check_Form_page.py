@@ -5,6 +5,7 @@ Touring Demo(My19 Recommission) landing page checking.
 import time,os
 import unittest
 import pytest
+import time
 from selenium.webdriver.common.keys import Keys
 from driver.browser import *
 
@@ -46,22 +47,32 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             self.bookingPage.click_element(self.bookingPage.element.dealerMap)
             self.bookingPage.input_element_value(self.bookingPage.element.dealerMap, "OP")
             # choose first map
+            time.sleep(3)
             self.bookingPage.key_Action(Keys.DOWN)
+            time.sleep(0.5)
             self.bookingPage.key_Action(Keys.ENTER)
+            time.sleep(0.5)
             self.bookingPage.key_Action(Keys.ENTER)
+            time.sleep(3)
             # submit form when all forms are empty
             self.bookingPage.click_element(self.bookingPage.element.requestTestRideButton)
-    def test_touringdemo_check_form_page(self):
+        self.error_message_list = self.bookingPage.get_message_list(self.bookingPage.element.errorMessage)
+        errorLenght=len(self.error_message_list)
+        self.assert_(10,errorLenght)
+        for error in self.error_message_list:
+            self.assertNotIn(error, "--")
+
+        self.error_message_div_list=self.bookingPage.get_message_list(self.bookingPage.element.errorMessage_checkbox)
+        errorDivLenght = len(self.error_message_div_list)
+        self.assert_(2, errorDivLenght)
+        for error in self.error_message_div_list:
+            self.assertNotIn(error, "--")
+    def test_touringdemo_check_bike_list(self):
          """
          Touring Demo(My19 Recommission)
-         Auto submit booking form
-         step:
-         1. choose first bike on home
-         2. submit form when form is empty
-         3. assert the error message
          :return:
          """
-
-
+         self.bike_value_list=self.bookingPage.get_message_list(self.bookingPage.element.bike_value_list)
+         #assert bike list value
 if __name__ == "__main__":
     unittest.main()

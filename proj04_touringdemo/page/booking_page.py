@@ -20,28 +20,18 @@ class BookingPage(Page):
         super(BookingPage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
 
-    def get_bike_list_locale(self,locale):
+    def get_message_list(self,loc):
         """
-        Get Home page bike list
-        :param locale:
+        Get booking page error message list
         :return:
         """
-        self.bike_list = self.find_elements(self.element.bike_list)
-        return [li.get_attribute("data-code") for li in self.bike_list if li.get_attribute("data-code")]
+        self.error_message_list = self.find_elements(loc)
+        return [li.get_attribute("value") for li in self.error_message_list if li.get_attribute("value")]
 
     def get_bike_list(self):
         """
         Get Booking page bike list
-        :param locale:
         :return:
         """
         bike_list = self.find_elements(self.element.bike_list)
         return bike_list
-
-    def get_map_list(self):
-        """
-        Get Map list on booking page
-        :return:
-        """
-        map_list = self.find_elements(self.element.chooseDealerList)
-        return map_list
