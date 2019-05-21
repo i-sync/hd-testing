@@ -7,6 +7,7 @@ from contextlib import contextmanager
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import staleness_of
+from selenium.webdriver.common.action_chains import ActionChains
 
 class Page(object):
     '''基础类，用于所有页面的继承'''
@@ -45,13 +46,6 @@ class Page(object):
                 self.find_element(loc).click()
         else:
             self.find_element(loc).click()
-    #find element
-    def find_element_refresh_page(self, loc, refresh_page=False, timeout=30):
-        if refresh_page:
-            with self.wait_for_page_load(timeout):
-                self.find_element(loc)
-        else:
-            self.find_element(loc)
 
     #select element
     def select_element_by_value(self, loc, value, refresh_page=False, timeoue=30):
@@ -80,6 +74,18 @@ class Page(object):
         self.find_element(loc).clear()
         self.find_element(loc).send_keys(value)
 
+    # mouseover element
+    def mouseover_element(self,loc):
+        action = ActionChains(self.driver)
+        element = self.find_element(loc)
+        action.move_to_element(element).perform()
+        return element
+    #key_down
+    def key_Action(self,keyValue):
+        action=ActionChains(self.driver)
+        action.key_down(keyValue)
+        action.key_up(keyValue)
+        action.perform()
     @contextmanager
     def wait_for_page_load(self, timeout=30):
         """
