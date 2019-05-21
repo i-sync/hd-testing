@@ -21,14 +21,6 @@ class TestGreatestridesCheckHomePage(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def save_img(self, img_name):
-        """
-            传入一个img_name, 并存储到默认的文件路径下
-        :param img_name:
-        :return:
-        """
-        self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
-
     def test_greatestrides_check_home_page(self):
         """
         11. Greatestrides Check locale home page

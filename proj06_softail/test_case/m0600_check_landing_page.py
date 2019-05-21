@@ -40,7 +40,7 @@ class TestSoftailCheckLandingPage(unittest.TestCase):
             #open landing page
             self.landingPage.open()
             #country select
-            self.landingPage.chose_locale(locale)
+            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale, refresh_page=True)
             if locale in Online:
                 self.assertIn(locale, self.driver.current_url)
             else:

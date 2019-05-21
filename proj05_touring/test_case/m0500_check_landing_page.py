@@ -40,7 +40,7 @@ class TestTouringCheckLandingPage(unittest.TestCase):
             #open landing page
             self.landingPage.open()
             #country select
-            self.landingPage.chose_locale(locale)
+            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale, refresh_page=True)
             #check url if correct
             part_url = "harley-davidson\.com\/.*\/{}\/index\.html".format(locale[:2])
             self.assertRegex(self.driver.current_url,part_url)
