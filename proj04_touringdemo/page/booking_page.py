@@ -35,13 +35,13 @@ class BookingPage(Page):
         :param locale:
         :return:
         """
-        self.bike_list = self.find_elements(self.element.bike_list)
-        return self.bike_list
+        bike_list = self.find_elements(self.element.bike_list)
+        return bike_list
 
     def get_map_list(self):
         """
         Get Map list on booking page
         :return:
         """
-        self.map_list = self.find_elements(self.element.chooseDealerList)
-        return self.map_list
+        map_list = self.find_elements(self.element.chooseDealerList)
+        return map_list

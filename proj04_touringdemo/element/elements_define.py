@@ -22,7 +22,7 @@ class ElementsDefine(object):
         self.text_on_bike=(By.CSS_SELECTOR,"div.my19-container div.confirmation_header-section")
         self.find_bikes=(By.CSS_SELECTOR,"div.my19-container div.confirmation_bikes-container")
         #first bike
-        self.bike_list = (By.CSS_SELECTOR,"div.confirmation_bikes .confirmation_bikes-img")
+        self.bike_list = (By.CSS_SELECTOR,"div.confirmation_bikes div.confirmation_bikes-box")
         self.firstBike = (By.XPATH,"//div[@class='my19-container bigger']//img[1]")
         # Locale dealer
         self.dealerMap =(By.ID,"searchTextField")
