@@ -25,7 +25,6 @@ class TestTrbfDcCheckLandingPage(unittest.TestCase):
         """
         self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
-    @pytest.mark.debug
     def test_trbfdc_check_landing_page(self):
         """
         08. TRBF DC Check landing page

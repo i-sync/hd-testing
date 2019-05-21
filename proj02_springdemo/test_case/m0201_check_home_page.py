@@ -1,7 +1,6 @@
 """
 Check Spring Demo Social Link URL
 """
-
 import unittest
 import pytest
 
@@ -46,6 +45,7 @@ class TestSpringDemoCheckHomePage(unittest.TestCase):
         #get bike list
         bike_list_matrix = get_bike_matrix()
 
+        res = []
         for locale in Online:
             # open locale homepage
             self.homepage.url = "/{}".format(locale)
@@ -53,5 +53,10 @@ class TestSpringDemoCheckHomePage(unittest.TestCase):
 
             #get bike list
             bike_list = self.homepage.get_bike_list(locale)
-            for bike_code in bike_list:
-                self.assertTrue(bike_code in bike_list_matrix[locale])
+            if not sorted(bike_list) == sorted(bike_list_matrix[locale]):
+                info = "locale: [{}] bike list is not equal.\r\npage bike list: {}\r\nmatrix bike list:{}".format(locale, sorted(bike_list), sorted(bike_list_matrix[locale]))
+                self.homepage.logger.warning(info)
+                res.append(info)
+
+        if len(res):
+            assert 0, "Some locales bike list are incorrect."

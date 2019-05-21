@@ -2,6 +2,7 @@
 Page Object, Base Page
 """
 import os
+import logging
 from contextlib import contextmanager
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,6 +16,7 @@ class Page(object):
         self.driver = driver
         self.base_url = base_url
         self.timeout = 30
+        self.logger = logging.getLogger(__name__)
     #on_page()方法是URL地址的断言部分
     def on_page(self):
         return self.driver.current_url == (self.base_url+self.url)
