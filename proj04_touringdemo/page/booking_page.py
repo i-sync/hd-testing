@@ -20,18 +20,18 @@ class BookingPage(Page):
         super(BookingPage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
 
-    def get_message_list(self,loc):
+    def get_list_by_attribute(self,loc,attributeValue):
         """
         Get booking page error message list
         :return:
         """
-        self.error_message_list = self.find_elements(loc)
-        return [li.get_attribute("value") for li in self.error_message_list if li.get_attribute("value")]
+        self.list = self.find_elements(loc)
+        return [li.get_attribute(attributeValue) for li in self.list if li.get_attribute(attributeValue)]
 
-    def get_bike_list(self):
+    def get_list(self,loc):
         """
         Get Booking page bike list
         :return:
         """
-        bike_list = self.find_elements(self.element.bike_list)
+        bike_list = self.find_elements(loc)
         return bike_list

@@ -14,7 +14,7 @@ from proj04_touringdemo.page.landing_page import LandingPage
 from proj04_touringdemo.page.booking_page import BookingPage
 
 @pytest.mark.my19R
-class TestTouringDemoCheckLandingPage(unittest.TestCase):
+class TestTouringDemoCheckBookingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
@@ -22,7 +22,7 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def test_touringdemo_check_landing_page(self):
+    def test_touringdemo_check_booking_page(self):
         """
         Touring Demo(My19 Recommission)
         step:
@@ -39,9 +39,10 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             #country select
             self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale)
             # select book button on home page
-            self.bookingPage.click_element(self.bookingPage.element.choose_book_button)
+            self.bookingPage.click_element(self.bookingPage.element.choose_book_button,refresh_page=True)
             # choose first bike on home
-            bike_list = self.bookingPage.get_bike_list()
+            time.sleep(3)
+            bike_list = self.bookingPage.get_list(self.bookingPage.element.bike_value_list)
             bike_list[0].click()
             # input map
             self.bookingPage.click_element(self.bookingPage.element.dealerMap)
@@ -56,23 +57,28 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             time.sleep(3)
             # submit form when all forms are empty
             self.bookingPage.click_element(self.bookingPage.element.requestTestRideButton)
-        self.error_message_list = self.bookingPage.get_message_list(self.bookingPage.element.errorMessage)
-        errorLenght=len(self.error_message_list)
-        self.assert_(10,errorLenght)
-        for error in self.error_message_list:
-            self.assertNotIn(error, "--")
 
-        self.error_message_div_list=self.bookingPage.get_message_list(self.bookingPage.element.errorMessage_checkbox)
-        errorDivLenght = len(self.error_message_div_list)
+        #check error message that is not --
+        error_message_list = self.bookingPage.get_list_by_attribute(self.bookingPage.element.errorMessage,"value")
+        errorLenght=len(error_message_list)
+        #check error message lenght
+        self.assert_(10,errorLenght)
+        for error in error_message_list:
+            self.assertNotIn(error, "--")
+        error_message_div_list=self.bookingPage.get_list_by_attribute(self.bookingPage.element.errorMessage_checkbox,"value")
+        errorDivLenght = len(error_message_div_list)
         self.assert_(2, errorDivLenght)
-        for error in self.error_message_div_list:
+        for error in error_message_div_list:
             self.assertNotIn(error, "--")
     def test_touringdemo_check_bike_list(self):
          """
          Touring Demo(My19 Recommission)
          :return:
          """
-         self.bike_value_list=self.bookingPage.get_message_list(self.bookingPage.element.bike_value_list)
-         #assert bike list value
+         self.get_list_by_attribute=self.bookingPage.get_list_by_attribute(self.bookingPage.element.bike_value_list,"value")
+         # assert bike list value
+
+
+
 if __name__ == "__main__":
     unittest.main()

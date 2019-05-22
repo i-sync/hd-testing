@@ -65,3 +65,6 @@ class ElementsDefine(object):
         self.errorMessage_checkbox=(By.CSS_SELECTOR,"div.error")
         # Request Test Ride button
         self.requestTestRideButton = (By.CSS_SELECTOR,".common_confirm-btn")
+
+        #menu&footer
+        self.footerHrefs=(By.CSS_SELECTOR,"div.footer a")
