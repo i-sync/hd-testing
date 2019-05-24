@@ -1,7 +1,7 @@
 """
 Touring Demo(My19 Recommission) Home Page
 """
-
+import re
 from page.page import Page
 from proj04_touringdemo.data.urls import current_url
 from proj04_touringdemo.element.elements_define import ElementsDefine
@@ -16,6 +16,7 @@ class BookingPage(Page):
         """
         :param driver:
         """
+        self.url="/{}"
         # super这句是必须的，用于构造父类Page,且Page需要参数
         super(BookingPage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
@@ -30,8 +31,24 @@ class BookingPage(Page):
 
     def get_list(self,loc):
         """
-        Get Booking page bike list
+        Get Booking page list
+        eg:bike list
         :return:
         """
-        bike_list = self.find_elements(loc)
-        return bike_list
+        get_list = self.find_elements(loc)
+        return get_list
+
+    def get_text_list(self,loc):
+        """
+        Get Booking page text list
+        eg:bike name list
+        :return:
+        """
+        L=[]
+        get_list = self.find_elements(loc)
+        for text_element in get_list:
+            value = text_element.text
+            #remove 特殊符号
+            string = re.sub('[./~!@#$%^&*()-+®]+','', value)
+            L.append(string)
+        return L

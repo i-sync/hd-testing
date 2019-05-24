@@ -13,47 +13,45 @@ __matrix_bike_file_name__ = "proj04_touringdemo/data/MY19_FXDR_Market_Matrix.xls
 
 def get_social_footer_matrix():
     """
-    Get all soical footer link matrix
+    Get all soical link matrix
     locale column B
-    Facebook Url column F
-    Instagram Url column E
-    Twitter Url column D
-    please ignore Youtube
+    Facebook Url column C
+    Instagram Url column D
+    Twitter Url column E
     :return:
     """
     wb = openpyxl.load_workbook(__matrix_file_name__)
-    sheet = wb["Overview"]
+    sheet = wb["MY19R"]
     res = {}
     for index in range(2, 44):
         locale = sheet["B{}".format(index)].value
-        facebook = sheet["F{}".format(index)].value
-        instagram = sheet["E{}".format(index)].value
-        twitter = sheet["D{}".format(index)].value
+        facebook = sheet["C{}".format(index)].value
+        instagram = sheet["D{}".format(index)].value
+        twitter = sheet["E{}".format(index)].value
         res[locale] = [facebook, instagram, twitter]
-
     wb.close()
     return res
-
 def get_bike_matrix():
     """
     Get All bike info matrix
     :return:
     """
     wb = openpyxl.load_workbook(__matrix_bike_file_name__)
-    sheet = wb["Overview"]
-    bike_column =["L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA" , "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL"]
+    sheet = wb["MY19R"]
+    bike_column =["H", "I", "J", "K", "L", "M", "N", "O"]
     bike_code = {}
     for col in bike_column:
         id = sheet["{}1".format(col)].value
+        id=id.upper()
         bike_code[col]= id
 
     res = {}
-    for index in range(5, 47):
-        locale = sheet["E{}".format(index)].value
+    for index in range(2, 33):
+        locale = sheet["B{}".format(index)].value
         res[locale] = []
         for col in bike_column:
             cc = sheet["{}{}".format(col, index)].value
-            if cc and  not cc.startswith("No"):
+            if cc and  not cc.startswith("NO"):
                 res[locale].append(bike_code[col])
 
     wb.close()

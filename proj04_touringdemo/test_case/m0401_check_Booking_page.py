@@ -6,21 +6,24 @@ import time,os
 import unittest
 import pytest
 import time
-from selenium.webdriver.common.keys import Keys
 from driver.browser import *
 
 from proj04_touringdemo.data.locales import *
+from proj04_touringdemo.data.marketmatrix_utils import *
 from proj04_touringdemo.page.landing_page import LandingPage
 from proj04_touringdemo.page.booking_page import BookingPage
 
 @pytest.mark.my19R
 class TestTouringDemoCheckBookingPage(unittest.TestCase):
-    def setUp(self):
-        self.driver = firefox_browser(headless=False)
-        self.landingPage = LandingPage(self.driver)
-        self.bookingPage = BookingPage(self.driver)
-    def tearDown(self):
-        self.driver.quit()
+    @classmethod
+    def setUpClass(cls):
+        cls.driver = firefox_browser(headless=False)
+        cls.landingPage = LandingPage(cls.driver)
+        cls.bookingPage = BookingPage(cls.driver)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
 
     def test_touringdemo_check_booking_page(self):
         """
@@ -75,9 +78,35 @@ class TestTouringDemoCheckBookingPage(unittest.TestCase):
          Touring Demo(My19 Recommission)
          :return:
          """
-         self.get_list_by_attribute=self.bookingPage.get_list_by_attribute(self.bookingPage.element.bike_value_list,"value")
-         # assert bike list value
-
+         # get bike list from excel
+         bike_list_matrix = get_bike_matrix()
+         res = []
+         # get footer links
+         get_footer_list = get_social_footer_matrix()
+         footer=[]
+         for locale in FromLocale:
+             # open locale homepage
+             self.bookingPage.url = "/{}".format(locale)
+             self.bookingPage.open()
+             # select book button on home page
+             self.bookingPage.click_element(self.bookingPage.element.choose_book_button, refresh_page=True)
+             time.sleep(3)
+             #get bike list on this locale
+             get_bike_list=self.bookingPage.get_text_list(self.bookingPage.element.bike_value_list)
+             #get footer link list
+             get_footer_links_page=self.bookingPage.get_list_by_attribute(self.bookingPage.element.footerIconHrefs,"href")
+             #assert bike list value
+             if not sorted(get_bike_list)==sorted(bike_list_matrix[locale]):
+                infomation="locale: [{}] bike list is not equal.\r\npage bike list: {}\r\nmatrix bike list:{}".format(locale,sorted(get_bike_list),sorted(bike_list_matrix[locale]))
+                self.bookingPage.logger.warning(infomation)
+                res.append(infomation)
+             # assert footer icon links
+             for footerHref in get_footer_links_page:
+                 print(footerHref)
+                 print(get_footer_list[locale])
+                 self.assertTrue(footerHref in get_footer_list[locale])
+         if len(res):
+             assert 1,locale+"\nbike list are incorrect"
 
 
 if __name__ == "__main__":

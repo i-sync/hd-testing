@@ -67,4 +67,5 @@ class ElementsDefine(object):
         self.requestTestRideButton = (By.CSS_SELECTOR,".common_confirm-btn")
 
         #menu&footer
-        self.footerHrefs=(By.CSS_SELECTOR,"div.footer a")
+        #footer <a>
+        self.footerIconHrefs=(By.CSS_SELECTOR,"div.footer_icon-container a[target='_blank']")
