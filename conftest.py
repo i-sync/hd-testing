@@ -26,7 +26,7 @@ def pytest_html_results_table_header(cells):
 @pytest.mark.optionalhook
 def pytest_html_results_table_row(report, cells):
     cells.insert(2, html.td(report.description))
-    cells.insert(1, html.td(datetime.utcnow(), class_='col-time'))
+    cells.insert(1, html.td(datetime.now(), class_='col-time'))
     #cells.pop()
 
 @pytest.mark.hookwrapper
