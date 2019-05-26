@@ -17,6 +17,7 @@ class TestSpringDemoCheckHomePage(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
+    @pytest.mark.debug
     def test_springdemo_check_social_link(self):
         """
         Spring Demo Homepage check social link
