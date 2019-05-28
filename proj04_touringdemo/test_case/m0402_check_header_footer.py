@@ -12,7 +12,7 @@ from driver.browser import *
 from proj04_touringdemo.data.locales import *
 from proj04_touringdemo.page.landing_page import LandingPage
 from proj04_touringdemo.page.booking_page import BookingPage
-
+from proj04_touringdemo.data.marketmatrix_utils import *
 @pytest.mark.my19R
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
@@ -25,12 +25,32 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def test_links(self):
         """
         Touring Demo(My19 Recommission)
-        check href links for footer
+        check href links for footer&header
         :return:
         """
-        get_href_list=self.bookingPage.get_list_by_attribute(self.bookingPage.element.footerHrefs,"href")
-        print(get_href_list)
-
-
+        get_footer_list = get_social_footer_matrix()
+        get_menu_links_list = get_menu_links_matrix()
+        self.landingPage.open()
+        # get all locales from landing page
+        locales = self.landingPage.get_all_locales()
+        # check online locale
+        for locale in locales:
+            # open landing page
+            self.landingPage.open()
+            # country select
+            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale)
+            # get footer link list
+            get_footer_links_page = self.bookingPage.get_list_by_attribute(self.bookingPage.element.footerIconHrefs,"href")
+            # assert footer icon links
+            for footerHref in get_footer_links_page:
+                self.assertTrue(footerHref in get_footer_list[locale])
+            # get menu link list
+            self.bookingPage.click_element(self.bookingPage.element.menuIcon)
+            get_menu_links_page = self.bookingPage.get_list_by_attribute(self.bookingPage.element.headerHrefs,"href")
+            #assert menu link
+            for menuHref in get_menu_links_page:
+                menuHref
+                get_menu_links_page[0]
+                self.assert_(menuHref in get_menu_links_list[locale])
 if __name__ == "__main__":
     unittest.main()

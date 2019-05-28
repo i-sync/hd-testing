@@ -69,3 +69,7 @@ class ElementsDefine(object):
         #menu&footer
         #footer <a>
         self.footerIconHrefs=(By.CSS_SELECTOR,"div.footer_icon-container a[target='_blank']")
+        #menu icon
+        self.menuIcon=(By.CSS_SELECTOR,".navigation_menu-btn")
+        self.headerHrefs=(By.CSS_SELECTOR,"div.nav_top-menu a")
+        self.headerHrefs_blank = (By.CSS_SELECTOR, "div.nav_top-menu a[target='_blank']")
