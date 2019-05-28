@@ -2,14 +2,10 @@
 Touring Demo(My19 Recommission) landing page checking.
 """
 
-import time,os
 import unittest
 import pytest
-import time
-from selenium.webdriver.common.keys import Keys
 from driver.browser import *
 
-from proj04_touringdemo.data.locales import *
 from proj04_touringdemo.page.landing_page import LandingPage
 from proj04_touringdemo.page.booking_page import BookingPage
 from proj04_touringdemo.data.marketmatrix_utils import *
@@ -48,9 +44,8 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             self.bookingPage.click_element(self.bookingPage.element.menuIcon)
             get_menu_links_page = self.bookingPage.get_list_by_attribute(self.bookingPage.element.headerHrefs,"href")
             #assert menu link
+            assertValue=sorted(get_menu_links_page,key=str.lower)==sorted(get_menu_links_list[locale], key=str.lower)
             for menuHref in get_menu_links_page:
-                menuHref
-                get_menu_links_page[0]
-                self.assert_(menuHref in get_menu_links_list[locale])
+                self.assert_(menuHref in str(get_menu_links_list[locale]))
 if __name__ == "__main__":
     unittest.main()
