@@ -36,6 +36,7 @@ class TestSpringDemoCheckHomePage(unittest.TestCase):
             social_links = self.homepage.get_social_links(locale)
             for sl in social_links:
                 self.assertTrue(sl in social_link_matrix[locale])
+            break
 
     def test_springdemo_check_bikelist(self):
         """
