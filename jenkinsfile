@@ -1,15 +1,16 @@
 pipeline {
-    agent none
+    agent {node 'windows'}
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image 'python:2-alpine'
-                }
-            }
+        stage('Testing') {
             steps {
-                sh 'python -m py_compile *.py'
+                echo 'Start testing'
+                sh 'pytest --env=live -m debug --html=report/report-$(date +%Y%m%d-%H%M%S).html'
             }
         }
     }
+    post{
+		always {
+			echo 'Complete!'
+		}
+	}
 }
