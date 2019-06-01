@@ -9,7 +9,7 @@ from driver.browser import *
 
 from proj04_touringdemo.page.landing_page import LandingPage
 
-# @pytest.mark.my19R
+@pytest.mark.live_checker
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)
@@ -30,7 +30,7 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             # open landing page
             self.landingPage.open()
             # country select
-            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale)
+            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale, refresh_page=True)
             # check
             self.assertIn(locale, self.driver.current_url)
 if __name__ == "__main__":
