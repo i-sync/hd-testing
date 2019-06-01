@@ -17,7 +17,7 @@ from proj04_touringdemo.page.booking_page import BookingPage
 class TestTouringDemoCheckBookingPage(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.driver = firefox_browser(headless=False)
+        cls.driver = firefox_browser()
         cls.landingPage = LandingPage(cls.driver)
         cls.bookingPage = BookingPage(cls.driver)
 

@@ -11,7 +11,7 @@ from proj02_springdemo.page.home_page import HomePage
 
 class TestSpringDemoCheckHomePage(unittest.TestCase):
     def setUp(self):
-        self.driver = firefox_browser(headless=False)
+        self.driver = firefox_browser()
         self.homepage = HomePage(self.driver)
 
     def tearDown(self):

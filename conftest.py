@@ -10,10 +10,12 @@ from py.xml import html
 #env
 def pytest_addoption(parser):
     parser.addoption("--env", action="store", default="dev", help="env option: dev/staging/live")
+    parser.addoption("--headless", action="store", default="False", help="headless option: True/False")
 
 def pytest_configure(config):
     env = config.getoption("env")
     os.environ["env"] = env if env else "dev"
+    os.environ["headless"] = config.getoption("headless")
 
 
 #Html Report
