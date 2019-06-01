@@ -1,5 +1,5 @@
 pipeline {
-    agent {node 'windows'}
+    agent {node 'Windows_node'}
     stages {
         stage('Create Virtual ENV') {
             steps {
