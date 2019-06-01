@@ -10,7 +10,7 @@ pipeline {
         stage('Activate Virtual ENV') {
             steps {
                 echo 'Activate Virtual ENV'
-                sh '. venv/Scripts/activate'
+                bat 'venv\Scripts\activate.bat'
             }
         }
         stage('Restore package') {
@@ -22,13 +22,13 @@ pipeline {
         stage('Start Testing') {
             steps {
                 echo 'Start testing'
-                sh 'pytest --env=live -m debug --html=report/report-$(date +%Y%m%d-%H%M%S).html'
+                sh 'pytest --env=live -m live_checker --html=report/report-$(date +%Y%m%d-%H%M%S).html'
             }
         }
         stage('End') {
             steps {
                 echo 'Deactive ENV'
-                bat 'venv/Scripts/deactivate.bat'
+                bat 'venv\Scripts\deactivate.bat'
             }
         }
     }
