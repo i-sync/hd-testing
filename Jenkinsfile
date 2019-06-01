@@ -10,7 +10,7 @@ pipeline {
                     fi
                     source venv/Scripts/activate
                     pip install -r requirements.txt
-                    pytest --env=live --headless=True -m live_checker --html=report/report-$(date +%Y%m%d-%H%M%S).html
+                    pytest -n 2 --env=live --headless=True -m live_checker --html=report/report-$(date +%Y%m%d-%H%M%S).html
                     deactivate
                 '''
             }
