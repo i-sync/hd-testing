@@ -1,34 +1,18 @@
 pipeline {
     agent {node 'Windows_node'}
     stages {
-        stage('Create Virtual ENV') {
+        stage('Testing') {
             steps {
-                echo 'Create Virtual ENV'
-                sh 'virtualenv venv'
-            }
-        }
-        stage('Activate Virtual ENV') {
-            steps {
-                echo 'Activate Virtual ENV'
-                sh '. venv/Scripts/activate'
-            }
-        }
-        stage('Restore package') {
-            steps {
-                echo 'Restore package'
-                sh 'pip install -r requirements.txt'
-            }
-        }
-        stage('Start Testing') {
-            steps {
-                echo 'Start testing'
-                sh 'pytest --env=live -m live_checker --html=report/report-$(date +%Y%m%d-%H%M%S).html'
-            }
-        }
-        stage('End') {
-            steps {
-                echo 'Deactive ENV'
-                sh 'deactivate'
+                echo 'Start Testing'
+                sh '''
+                    if [ ! -d "venv" ]; then
+                        virtualenv venv
+                    fi
+                    source venv/Scripts/activate
+                    pip install -r requirements.txt
+                    pytest --env=live -m live_checker --html=report/report-$(date +%Y%m%d-%H%M%S).html
+                    deactivate
+                '''
             }
         }
     }
