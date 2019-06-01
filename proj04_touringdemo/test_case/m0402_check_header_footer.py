@@ -12,7 +12,7 @@ from proj04_touringdemo.data.marketmatrix_utils import *
 @pytest.mark.my19R
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
-        self.driver = firefox_browser(headless=False)
+        self.driver = firefox_browser()
         self.landingPage = LandingPage(self.driver)
         self.bookingPage = BookingPage(self.driver)
     def tearDown(self):

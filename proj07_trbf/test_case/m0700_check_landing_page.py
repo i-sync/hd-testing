@@ -12,7 +12,7 @@ from proj07_trbf.page.landing_page import LandingPage
 @pytest.mark.live_checker
 class TestTrbfCheckLandingPage(unittest.TestCase):
     def setUp(self):
-        self.driver = firefox_browser(headless=False)
+        self.driver = firefox_browser()
         self.landingPage = LandingPage(self.driver)
     def tearDown(self):
         self.driver.quit()
