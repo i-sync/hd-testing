@@ -10,7 +10,7 @@ pipeline {
         stage('Activate Virtual ENV') {
             steps {
                 echo 'Activate Virtual ENV'
-                bat 'venv\Scripts\activate.bat'
+                bat 'venv\\Scripts\\activate.bat'
             }
         }
         stage('Restore package') {
@@ -28,7 +28,7 @@ pipeline {
         stage('End') {
             steps {
                 echo 'Deactive ENV'
-                bat 'venv\Scripts\deactivate.bat'
+                bat 'venv\\Scripts\\deactivate.bat'
             }
         }
     }
