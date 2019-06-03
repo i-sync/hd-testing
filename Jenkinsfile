@@ -4,13 +4,11 @@ pipeline {
         stage('Testing') {
             steps {
                 echo 'Start Testing'
-                sh '''
-                    if [ ! -d "venv" ]; then
-                        virtualenv venv
-                    fi
-                    source venv/Scripts/activate
+                bat '''
+                    virtualenv venv
+                    venv\\Scripts\\activate.bat
                     pip install -r requirements.txt
-                    pytest -n 2 --env=live --headless=True -m live_checker --html=report/report-$(date +%Y%m%d-%H%M%S)-[${BUILD_NUMBER}].html
+                    pytest -n 2 --env=live --headless=True -m live_checker --html=report/report-${BUILD_NUMBER}.html
                     deactivate
                 '''
             }
