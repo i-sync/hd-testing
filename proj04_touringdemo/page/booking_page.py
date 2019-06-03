@@ -17,9 +17,10 @@ class BookingPage(Page):
         :param driver:
         """
         self.url="/{}"
-        # super这句是必须的，用于构造父类Page,且Page需要参数
+        # super这句是必须的，用于构造父类Page,且Page需要参数(python3 不需要参数，但是python 2.7需要，这里加入的目的是为了兼容)
         super(BookingPage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
+        self.logger
 
     def get_list_by_attribute(self,loc,attributeValue):
         """

@@ -8,12 +8,15 @@ import pytest
 from driver.browser import *
 
 from proj04_touringdemo.page.landing_page import LandingPage
+from proj04_touringdemo.report.report import *
+case_name = os.path.basename(__file__).split('.')[0]
 
-# @pytest.mark.my19R
+@pytest.mark.my19R
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser(headless=False)
         self.landingPage = LandingPage(self.driver)
+        self.log = Log(r"../../report/output.txt")
     def tearDown(self):
         self.driver.quit()
 
@@ -24,14 +27,19 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
         self.landingPage.open()
         # get all locales from landing page
         locales = self.landingPage.get_all_locales()
-
+        self.log.info(locales)
         #check online locale
         for locale in locales:
-            # open landing page
+            # time.sleep(3)
+            self.log.info(locale)
+            # open landing page6
             self.landingPage.open()
             # country select
-            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale)
+            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale,refresh_page=True)
             # check
-            self.assertIn(locale, self.driver.current_url)
+            try:
+                self.assertIn(locale, self.driver.current_url)
+            except AssertionError as result:
+                self.log.info("Touring Demo(My19 Recommission) landing page checking. this locale is error\n"+locale+"\n please review error result%s"% result)
 if __name__ == "__main__":
     unittest.main()
