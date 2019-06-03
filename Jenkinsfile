@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Start Testing'
                 bat '''
-                    if not exist virtualenv venv
+                    if not exist venv virtualenv venv
                     call venv\\Scripts\\activate.bat
                     pip install -r requirements.txt
                     pytest -n 2 --env=live --headless=True -m live_checker --html=report/report-${BUILD_NUMBER}.html
