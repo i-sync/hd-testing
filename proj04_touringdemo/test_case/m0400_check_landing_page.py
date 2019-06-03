@@ -14,7 +14,7 @@ case_name = os.path.basename(__file__).split('.')[0]
 @pytest.mark.my19R
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
-        self.driver = firefox_browser(headless=False)
+        self.driver = firefox_browser()
         self.landingPage = LandingPage(self.driver)
         self.log = Log(r"../../report/output.txt")
     def tearDown(self):

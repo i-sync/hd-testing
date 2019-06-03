@@ -18,7 +18,7 @@ from proj04_touringdemo.report.report import *
 class TestTouringDemoCheckBookingFormPage(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.driver = firefox_browser(headless=False)
+        cls.driver = firefox_browser()
         cls.landingPage = LandingPage(cls.driver)
         cls.bookingPage = BookingPage(cls.driver)
         cls.log = Log(r"../../report/output.txt")

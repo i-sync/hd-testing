@@ -11,12 +11,13 @@ from proj02_springdemo.page.home_page import HomePage
 
 class TestSpringDemoCheckHomePage(unittest.TestCase):
     def setUp(self):
-        self.driver = firefox_browser(headless=False)
+        self.driver = firefox_browser()
         self.homepage = HomePage(self.driver)
 
     def tearDown(self):
         self.driver.quit()
 
+    @pytest.mark.debug
     def test_springdemo_check_social_link(self):
         """
         Spring Demo Homepage check social link
@@ -35,6 +36,7 @@ class TestSpringDemoCheckHomePage(unittest.TestCase):
             social_links = self.homepage.get_social_links(locale)
             for sl in social_links:
                 self.assertTrue(sl in social_link_matrix[locale])
+            break
 
     def test_springdemo_check_bikelist(self):
         """

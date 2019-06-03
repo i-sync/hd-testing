@@ -14,7 +14,7 @@ from proj04_touringdemo.report.report import *
 @pytest.mark.my19R
 class TestTouringDemoCheckHeaderFooterPage(unittest.TestCase):
     def setUp(self):
-        self.driver = firefox_browser(headless=False)
+        self.driver = firefox_browser()
         self.landingPage = LandingPage(self.driver)
         self.bookingPage = BookingPage(self.driver)
         self.log = Log(r"../../report/output.txt")
