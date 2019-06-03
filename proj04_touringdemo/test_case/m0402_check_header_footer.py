@@ -8,7 +8,6 @@ from driver.browser import *
 from proj04_touringdemo.page.landing_page import LandingPage
 from proj04_touringdemo.page.booking_page import BookingPage
 from proj04_touringdemo.data.marketmatrix_utils import *
-from proj04_touringdemo.report.demo1 import logger
 from proj04_touringdemo.report.report import *
 
 @pytest.mark.my19R
@@ -17,7 +16,6 @@ class TestTouringDemoCheckHeaderFooterPage(unittest.TestCase):
         self.driver = firefox_browser()
         self.landingPage = LandingPage(self.driver)
         self.bookingPage = BookingPage(self.driver)
-        self.log = Log(r"../../report/output.txt")
     def tearDown(self):
         self.driver.quit()
 
@@ -44,15 +42,15 @@ class TestTouringDemoCheckHeaderFooterPage(unittest.TestCase):
             get_footer_links_page = self.bookingPage.get_list_by_attribute(self.bookingPage.element.footerIconHrefs,"href")
             if locale in["de_AT","de_CH"]:
                 time.sleep(3)
-                logger.info(get_footer_list[locale])
+                self.bookingPage.logger.info(get_footer_list[locale])
             # assert footer icon links
             try:
                 for footerHref in get_footer_links_page:
                     self.assertTrue(footerHref in get_footer_list[locale])
 
             except AssertionError as result:
-                logger.info(
-                    "Touring Demo(My19 Recommission) footerHref issue\n"+locale+" ,\n please review error result%s" % result)
+                self.bookingPage.logger.info(
+                    "Touring Demo(My19 Recommission) footerHref check issue locale is \n"+locale+" ,\n please review error result%s" % result)
 
             #sleep
             time.sleep(3)
@@ -70,7 +68,7 @@ class TestTouringDemoCheckHeaderFooterPage(unittest.TestCase):
                         else:
                             self.assertTrue(menuHref in get_menu_links_list[locale])
             except AssertionError as result:
-                logger.info(
+                self.bookingPage.logger.info(
                     "Touring Demo(My19 Recommission) header&footer link checking.this locale has some issue ,\n please review error result%s" % result)
 
 

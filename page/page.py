@@ -8,7 +8,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import staleness_of
 from selenium.webdriver.common.action_chains import ActionChains
-
+import time
 class Page(object):
     '''基础类，用于所有页面的继承'''
     #实例化Page类时会执行__init__方法，该方法的入参是Page类的入参
@@ -32,8 +32,12 @@ class Page(object):
     def open(self):
         self._open(self.url)
     #重写定位元素的方法，loc==(By.NAME,"email"),是一个元组，Python方法中入参是元组时需要在前面加*
-    def find_element(self,loc):
-        return self.driver.find_element(*loc)
+    def find_element(self,loc,refresh_page=False, timeoue=30):
+        if refresh_page:
+            with self.wait_for_page_load(timeoue):
+                return self.driver.find_element(*loc)
+        else:
+            return self.driver.find_element(*loc)
     def find_elements(self,loc):
         return self.driver.find_elements(*loc)
     def script(self, src):
@@ -64,6 +68,7 @@ class Page(object):
     #select element
     def select_element_by_visible_text(self, loc, text, refresh_page=False, timeoue=30):
         if refresh_page:
+            time.sleep(3)
             with self.wait_for_page_load(timeoue):
                 Select(self.find_element(loc)).select_by_visible_text(text)
         else:

@@ -21,7 +21,6 @@ class TestTouringDemoCheckBookingBikePage(unittest.TestCase):
         cls.driver = firefox_browser(headless=False)
         cls.landingPage = LandingPage(cls.driver)
         cls.bookingPage = BookingPage(cls.driver)
-        cls.log = Log(r"../../report/output.txt")
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()

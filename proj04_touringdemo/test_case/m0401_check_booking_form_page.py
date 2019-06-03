@@ -21,7 +21,6 @@ class TestTouringDemoCheckBookingFormPage(unittest.TestCase):
         cls.driver = firefox_browser()
         cls.landingPage = LandingPage(cls.driver)
         cls.bookingPage = BookingPage(cls.driver)
-        cls.log = Log(r"../../report/output.txt")
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
@@ -69,13 +68,17 @@ class TestTouringDemoCheckBookingFormPage(unittest.TestCase):
         errorLenght=len(error_message_list)
         #check error message lenght
         self.assertTrue(10,errorLenght)
-        for error in error_message_list:
-            self.assertNotIn(error, "--")
-        error_message_div_list=self.bookingPage.get_list_by_attribute(self.bookingPage.element.errorMessage_checkbox,"value")
-        errorDivLenght = len(error_message_div_list)
-        self.assertTrue(2, errorDivLenght)
-        for error in error_message_div_list:
-            self.assertNotIn(error, "--")
+        try:
+            for error in error_message_list:
+                self.assertNotIn(error, "--")
+            error_message_div_list=self.bookingPage.get_list_by_attribute(self.bookingPage.element.errorMessage_checkbox,"value")
+            errorDivLenght = len(error_message_div_list)
+            self.assertTrue(2, errorDivLenght)
+            for error in error_message_div_list:
+                self.assertNotIn(error, "--")
+        except AssertionError as result:
+            info="Touring Demo(My19 Recommission) booking form check:\n error locale is %s"%locale+"error message is %s"% result
+            self.bookingPage.logger.info(info)
 
 if __name__ == "__main__":
     unittest.main()

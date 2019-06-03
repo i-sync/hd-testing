@@ -16,7 +16,6 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser()
         self.landingPage = LandingPage(self.driver)
-        self.log = Log(r"../../report/output.txt")
     def tearDown(self):
         self.driver.quit()
 
@@ -27,11 +26,9 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
         self.landingPage.open()
         # get all locales from landing page
         locales = self.landingPage.get_all_locales()
-        self.log.info(locales)
         #check online locale
         for locale in locales:
-            # time.sleep(3)
-            self.log.info(locale)
+            time.sleep(3)
             # open landing page6
             self.landingPage.open()
             # country select
@@ -40,6 +37,7 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             try:
                 self.assertIn(locale, self.driver.current_url)
             except AssertionError as result:
-                self.log.info("Touring Demo(My19 Recommission) landing page checking. this locale is error\n"+locale+"\n please review error result%s"% result)
+                info="Touring Demo(My19 Recommission) landing page checking. this locale is error\n"+locale+"\n please review error result%s"% result
+                self.landingPage.logger.info(info)
 if __name__ == "__main__":
     unittest.main()
