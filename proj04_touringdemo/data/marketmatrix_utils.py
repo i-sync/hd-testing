@@ -7,7 +7,6 @@ Get bike data from excel file. "MY19_FXDR_Market_Matrix.xlsx"
 __author__ = "Libby.Qin"
 
 import openpyxl
-from proj04_touringdemo.data.urls import current_url
 __matrix_file_name__ = "proj04_touringdemo/data/MY19R_Social_footer_link.xlsx"
 __matrix_bike_file_name__ = "proj04_touringdemo/data/MY19_FXDR_Market_Matrix.xlsx"
 __matrix_share_copy__ = "proj04_touringdemo/data/MY19R_menu_share_copy.xlsx"
@@ -82,9 +81,9 @@ def get_menu_links_matrix():
     for index in range(2,33):
         locale_cp = sheet_cp["B{}".format(index)].value
         copy_message = sheet_cp["C{}".format(index)].value
-        twitter = "https://twitter.com/intent/tweet?hashtags=&text=+" + copy_message + "+&tw_p=tweetbutton&url=https://ridefree.harley-davidson.com/" + locale_cp
-        facebook = "http://www.facebook.com/sharer/sharer.php?u=https://ridefree.harley-davidson.com/" + locale_cp + "&appid=500689006785520"
-        share[locale_cp]=[twitter,facebook]
+        # twitter = "https://twitter.com/intent/tweet?hashtags=&text=+" + copy_message + "+&tw_p=tweetbutton&url=https://ridefree.harley-davidson.com/" + locale_cp
+        facebook = "https://www.facebook.com/sharer/sharer.php?u=https://ridefree.harley-davidson.com/" + locale_cp + "&appid=500689006785520"
+        share[locale_cp]=[facebook]
     #根据相同key，合并两个字典
     for i, j in share.items():
         if i in res.keys():
