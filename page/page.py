@@ -107,3 +107,6 @@ class Page(object):
     #wait page element
     def wait_for_page_element(self,timeout,loc):
         WebDriverWait(self.driver,timeout).until(loc)
+
+    def get_element_text(self, loc):
+        return self.find_element(loc).text
