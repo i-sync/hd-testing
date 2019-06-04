@@ -2,14 +2,9 @@
 Touring Demo(My19 Recommission) landing page checking.
 """
 
-import time,os
 import unittest
 import pytest
-import time
 from driver.browser import *
-from proj04_touringdemo.report.demo1 import logger
-from selenium.webdriver.common.keys import Keys
-from proj04_touringdemo.data.locales import *
 from proj04_touringdemo.data.marketmatrix_utils import *
 from proj04_touringdemo.page.landing_page import LandingPage
 from proj04_touringdemo.page.booking_page import BookingPage

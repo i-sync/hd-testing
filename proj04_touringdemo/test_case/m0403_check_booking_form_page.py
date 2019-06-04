@@ -7,9 +7,7 @@ import unittest
 import pytest
 import time
 from driver.browser import *
-from proj04_touringdemo.report.demo1 import logger
 from selenium.webdriver.common.keys import Keys
-from proj04_touringdemo.data.form_data import *
 from proj04_touringdemo.page.landing_page import LandingPage
 from proj04_touringdemo.page.booking_page import BookingPage
 from proj04_touringdemo.report.report import *
