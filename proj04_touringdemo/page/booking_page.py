@@ -28,7 +28,9 @@ class BookingPage(Page):
         """
         self.list = self.find_elements(loc)
         return [li.get_attribute(attributeValue) for li in self.list if li.get_attribute(attributeValue)]
-
+    def get_list_text(self,loc):
+        self.list = self.find_elements(loc)
+        return [li.text() for li in self.list if li]
     def get_list(self,loc):
         """
         Get Booking page list
