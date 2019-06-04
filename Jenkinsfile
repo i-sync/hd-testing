@@ -1,5 +1,8 @@
 pipeline {
     agent {node 'Windows_node'}
+    triggers {
+        cron('H 13 * * *')
+    }
     stages {
         stage('Testing') {
             steps {
