@@ -12,7 +12,10 @@ FormContent={
              "Email":"libby.qin@mullenloweprofero.com",#Email
              "Moble":"091267891",#MOBILE
              "PostCode":"07120",#POSTCODE
-             "Date":"02-04-1989",#DATE OF BIRTH
+             #DATE OF BIRTH
+             "DateDD":"22",
+             "DateMM": "02",
+             "DateYYYY": "1988",
              "ownBrand":"BMW",#select a motorcycle
              "PostAddress1":"Address one",#Address line 1
              "PostAddress2":"Address two",#Address line 2

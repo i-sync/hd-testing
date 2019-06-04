@@ -53,7 +53,7 @@ class ElementsDefine(object):
         # brandSelect
         self.brandSelect = (By.CSS_SELECTOR,"select[name=VehicleOwned]")
         # full motorcycle licence->Yes
-        self.fullMatorcycle = (By.CSS_SELECTOR,".common_sections:nth-child(12) .common_form-radio-container .common_form-label:nth-child(1) .common_form-inner-box")
+        self.fullMatorcycleYes = (By.CSS_SELECTOR,".common_sections:nth-child(12) .common_form-radio-container .common_form-label:nth-child(1) .common_form-inner-box")
         # via Email
         self.viaEmail = (By.CSS_SELECTOR,".horilized > .common_form-label:nth-child(1) .common_form-inner-box")
         # via phone
