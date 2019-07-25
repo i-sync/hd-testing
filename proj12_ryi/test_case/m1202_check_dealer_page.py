@@ -18,7 +18,7 @@ class TestRYICheckDealerPage(unittest.TestCase):
     MY20 RYI Dealer page
     """
     def setUp(self):
-        self.driver = firefox_browser(firefox_path="C:\\Program Files\\Mozilla Firefox 66\\firefox.exe")
+        self.driver = firefox_browser()
         self.dealerPage = DealerPage(self.driver)
     def tearDown(self):
         self.driver.quit()
@@ -37,22 +37,17 @@ class TestRYICheckDealerPage(unittest.TestCase):
             self.dealerPage.url = self.dealerPage.url.format(locale)
             self.dealerPage.open()
 
-            # temp basic auth
-            alert = self.dealerPage.wait_for_page_element(EC.alert_is_present(), 30)
-            alert.send_keys("hdguest" + Keys.TAB + "MLP@2017")
-            alert.accept()
-            time.sleep(5)
             # input letter a
             self.dealerPage.input_element_value(self.dealerPage.element.dealerpage_dealer_locate, 'a')
 
             # wait for first result item
-            self.dealerPage.wait_for_page_element(EC.element_to_be_clickable(self.dealerPage.element.dealerpage_googlemap_suggestfirst), 10)
+            self.dealerPage.wait_for_page_element(EC.element_to_be_clickable(self.dealerPage.element.dealerpage_googlemap_suggestfirst), 20)
             self.dealerPage.key_action(Keys.DOWN)
             self.dealerPage.key_action(Keys.ENTER)
             # self.dealerPage.click_element(self.dealerPage.element.dealerpage_googlemap_suggestfirst)
 
             # wait for the button
-            self.dealerPage.wait_for_page_element(EC.element_to_be_clickable(self.dealerPage.element.dealerpage_next_button), 30)
+            self.dealerPage.wait_for_page_element(EC.element_to_be_clickable(self.dealerPage.element.dealerpage_next_button), 20)
             # click next button
             self.dealerPage.click_element(self.dealerPage.element.dealerpage_next_button, refresh_page=True)
 
