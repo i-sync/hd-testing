@@ -11,7 +11,7 @@ from proj12_ryi.data.locales import *
 from proj12_ryi.page.home_page import HomePage
 
 @pytest.mark.live_checker
-class TestGreatestridesCheckHomePage(unittest.TestCase):
+class TestRYICheckHomePage(unittest.TestCase):
     """
     MY20 RYI Landing page
     """
@@ -21,7 +21,7 @@ class TestGreatestridesCheckHomePage(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def test_greatestrides_check_home_page(self):
+    def test_ryi_check_home_page(self):
         """
         12. MY20 RYI Landing page
         """

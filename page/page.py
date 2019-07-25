@@ -91,7 +91,7 @@ class Page(object):
         return element
 
     # key_down
-    def key_Action(self, key_value):
+    def key_action(self, key_value):
         action = ActionChains(self.driver)
         action.key_down(key_value)
         action.key_up(key_value)
@@ -113,7 +113,7 @@ class Page(object):
 
     # wait page element
     def wait_for_page_element(self, loc, timeout=30):
-        WebDriverWait(self.driver, timeout).until(loc)
+        return WebDriverWait(self.driver, timeout).until(loc)
 
     # get element text
     def get_element_text(self, loc):
