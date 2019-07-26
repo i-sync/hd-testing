@@ -51,5 +51,40 @@ class TestRYICheckDealerPage(unittest.TestCase):
             # click next button
             self.dealerPage.click_element(self.dealerPage.element.dealerpage_next_button, refresh_page=True)
 
+    def test_ryi_check_cookie_model(self):
+        """
+        MY20 RYI check cookie panel
+        1. New user show the cookie panel.
+        2. Click close button , the cookie panel disappear.
+        3. The second time , the cookie panel didn't show again.
+        :return:
+        """
+        error = []
+        for locale in Testing:
+
+            # open dealer page
+            self.dealerPage.url = self.dealerPage.url.format(locale)
+            self.dealerPage.open()
+
+            # wait for the cookie panel display
+            self.dealerPage.wait_for_page_element(
+                EC.visibility_of_element_located(self.dealerPage.element.homepage_cookiemodel), 10)
+            # get the cookie copy
+            cookie = self.dealerPage.get_element_text(self.dealerPage.element.homepage_cookiemodel)
+            if cookie in ["--", ""]:
+                error.append(locale)
+                self.dealerPage.logger.warning("the locale [{}] missing cookie panel".format(locale))
+
+        # the last time close the cookie panel
+        self.dealerPage.click_element(self.dealerPage.element.homepage_cookiemodel_close)
+        # wait for the cookie panel disappear
+        self.dealerPage.wait_for_page_element(EC.invisibility_of_element_located(self.dealerPage.element.homepage_cookiemodel), 10)
+        # check the cookie model is not visible
+        self.assertFalse(self.dealerPage.find_element(self.dealerPage.element.homepage_cookiemodel).is_displayed(), "close cookie panel failed.")
+
+        if len(error):
+            self.assertTrue(0, "Some locale missing cookie, please see logs.")
+
+
 if __name__ == "__main__":
     unittest.main()

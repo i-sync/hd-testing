@@ -9,6 +9,9 @@ class ElementsDefine(object):
         """
         init function
         """
+        #homepage
+        self.homepage_cookiemodel = (By.CSS_SELECTOR, "div.cookieModel p.cookieModel__title")
+        self.homepage_cookiemodel_close = (By.CSS_SELECTOR, "div.cookieModel button.cookieModel__close")
 
         #dealer page
         self.dealerpage_dealer_locate = (By.ID, "searchTextField")
