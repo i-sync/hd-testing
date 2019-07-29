@@ -18,5 +18,7 @@ class ElementsDefine(object):
         self.dealerpage_googlemap_suggestfirst = (By.CSS_SELECTOR, "div.pac-container div.pac-item")
         self.dealerpage_next_button = (By.CSS_SELECTOR, "#locationForm .googleMap__container button.common-cta_btn")
 
-        #booking
-        pass
+        #ryi-booking
+        self.ryibooking_submit_button = (By.CSS_SELECTOR, "div.formModel div.common_sections button.common-cta_btn")
+        self.ryibooking_form_errors = (By.CSS_SELECTOR, "div.formModel div.common_sections.form_error")
+        self.ryibooking_form_viapost = (By.ID, "usePost")
