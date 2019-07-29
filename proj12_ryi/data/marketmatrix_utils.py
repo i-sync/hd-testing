@@ -19,9 +19,9 @@ def get_social_matrix():
     :return:
     """
     wb = openpyxl.load_workbook(__matrix_file_name__)
-    sheet = wb["Overview"]
+    sheet = wb["RYI"]
     res = {}
-    for index in range(2, 35):
+    for index in range(4, 37):
         locale = sheet["B{}".format(index)].value.split()[0]
         facebook = sheet["U{}".format(index)].value
         instagram = sheet["V{}".format(index)].value
@@ -34,10 +34,13 @@ def get_social_matrix():
 def get_bike_matrix():
     """
     Get All bike info matrix
+    Custom: J,K,L,M,N
+    Performance: O,P,Q
+    Touring: R,S,T
     :return:
     """
     wb = openpyxl.load_workbook(__matrix_file_name__)
-    sheet = wb["Overview"]
+    sheet = wb["RYI"]
     bike_column =["J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"]
     bike_code = {}
     for col in bike_column:
@@ -45,7 +48,7 @@ def get_bike_matrix():
         bike_code[col]= id
 
     res = {}
-    for index in range(2, 35):
+    for index in range(4, 37):
         locale = sheet["B{}".format(index)].value.split()[0]
         res[locale] = []
         for col in bike_column:

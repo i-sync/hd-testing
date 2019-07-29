@@ -5,12 +5,15 @@ MY20 RYI Booking process .
 import time,os
 import unittest
 import pytest
+from random import choice
 from driver.browser import *
 from selenium.webdriver.common.keys import Keys
 import selenium.webdriver.support.expected_conditions as EC
 
 from proj12_ryi.data.locales import *
 from proj12_ryi.page.booking_process_page import BookingProcessPage
+
+from common.fake_email_address import pick_one_address
 
 @pytest.mark.ryi
 class TestRyiBookingProcess(unittest.TestCase):
@@ -51,6 +54,9 @@ class TestRyiBookingProcess(unittest.TestCase):
         # click next button
         self.currentPage.click_element(self.currentPage.element.dealerpage_next_button, refresh_page=True)
 
+        #
+        self.assertIn("ryibooking", self.driver.current_url.lower(), "Select dealer page Error! : [{}], it should be the ryi-booking.".format(self.driver.current_url))
+
     @pytest.mark.run(order=20)
     def test_ryi_booking_error_validation(self):
         """
@@ -60,7 +66,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         :return:
         """
 
-        self.assertIn("ryibooking", self.driver.current_url.lower(), "The current url is incorrent, it should be the ryi-booking.")
+        self.assertIn("ryibooking", self.driver.current_url.lower(), "The current url is incorrent : [{}], it should be the ryi-booking.".format(self.driver.current_url))
 
         # click the via post checkbox
         self.currentPage.click_element(self.currentPage.element.ryibooking_form_viapost)
@@ -76,6 +82,94 @@ class TestRyiBookingProcess(unittest.TestCase):
 
         # check the form_errors number
         self.assertEqual(len(form_errors), len(errors_id))
+
+    @pytest.mark.run(order=21)
+    def test_ryi_booking_page_title(self):
+        page_title = "Harley-Davidson® | Low Rider® S RYI - Enter your details"
+        self.assertEqual(page_title, self.driver.title, "RYI Booking page title is incorrect: [{}]".format(self.driver.title))
+
+    @pytest.mark.run(order=22)
+    def test_ryi_booking_submit(self):
+        """
+        MY20 RYI booking process: auto submit booking
+        1. Title : select first one.
+        2. First Name : Test_RYI_FN
+        3. Last Name: Test_RYI_LN
+        4. Email: Random genrator one email
+        5. Mobile: 123456789
+        6. Date of birth: 29-07-1990
+        7. License: Yes
+        8. Motocycle: choice one ["Aprilia", "BMW", "Ducati", "HarleyDavidson", "Honda", "Hyosung", "Indian", "Kawasaki", "KTM", "Moto Guzzi", "MVAgusta", "Other", "Suzuki", "Triumph", "Victory", "Yamaha"]
+        9. Via email: Yes
+        10.Via phone: Yes
+        11.Submit the form.
+        :return:
+        """
+        form_data = {
+            "firstname": "Test_RYI_FN",
+            "lastname": "Test_RYI_LN",
+            "email": pick_one_address(),
+            "mobile": "123456789",
+            "birthday": "29-07-1990",
+            "motocycle": choice(["Aprilia", "BMW", "Ducati", "HarleyDavidson", "Honda", "Hyosung", "Indian", "Kawasaki", "KTM", "Moto Guzzi", "MVAgusta", "Other", "Suzuki", "Triumph", "Victory", "Yamaha"])
+        }
+        # 1. Title
+        self.currentPage.select_element_by_index(self.currentPage.element.ryibooking_form_title, 1)
+
+        # 2. First Name
+        self.currentPage.input_element_value(self.currentPage.element.ryibooking_form_firstname, form_data["firstname"])
+
+        # 3. Last Name
+        self.currentPage.input_element_value(self.currentPage.element.ryibooking_form_lastname, form_data["lastname"])
+
+        # 4. Email
+        self.currentPage.input_element_value(self.currentPage.element.ryibooking_form_email, form_data["email"])
+
+        # 5. Mobile
+        self.currentPage.input_element_value(self.currentPage.element.ryibooking_form_mobile, form_data["mobile"])
+
+        # 6. Birthday
+        #self.currentPage.input_element_value(self.currentPage.element.ryibooking_form_birthday, form_data["birthday"])
+        self.currentPage.script('document.querySelector("#birthDay").value = "{}"'.format(form_data["birthday"]))
+
+        # 8. Motocycle
+        self.currentPage.select_element_by_visible_text(self.currentPage.element.ryibooking_form_motocycle, form_data["motocycle"])
+
+        # 9. Via Email
+        self.currentPage.click_element(self.currentPage.element.ryibooking_form_viaemail)
+
+        # 10. Via Phone
+        self.currentPage.click_element(self.currentPage.element.ryibooking_form_viaphone)
+
+        # 11. Close Via Post
+        self.currentPage.click_element(self.currentPage.element.ryibooking_form_viapost)
+
+        # 11. Submit Form, waiting for page refresh.
+        self.currentPage.click_element(self.currentPage.element.ryibooking_submit_button, refresh_page=True)
+
+        # 12 check the URL if correct.
+        self.assertIn("select", self.driver.current_url.lower(), "The current url is incorrent :[{}], it should be the ryi-thankyou.".format(self.driver.current_url))
+
+    @pytest.mark.run(order=30)
+    def test_ryi_thankyou_page_title(self):
+        page_title = "Harley-Davidson® | Low Rider® S RYI - Thanks"
+        self.assertEqual(page_title, self.driver.title, "RYI Thankyou title is incorrect: [{}]".format(self.driver.title))
+
+    @pytest.mark.run(order=31)
+    def test_ryi_check_bikelist(self):
+        """
+        Check RYI thankyou page BikeList
+        0. Get current locale from URL
+        1. Get the bikelist matrix from excel
+        2. Get the bikelist from current page.
+        3. Check those two bikelist if equal?
+        :return:
+        """
+        # 0. locale
+        locale = self.driver.current_url.split('/')[-2]
+
+        # 1. Get bikelist matrix
+        pass
 
 if __name__ == "__main__":
     unittest.main()

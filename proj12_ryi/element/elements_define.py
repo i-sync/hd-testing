@@ -21,4 +21,16 @@ class ElementsDefine(object):
         #ryi-booking
         self.ryibooking_submit_button = (By.CSS_SELECTOR, "div.formModel div.common_sections button.common-cta_btn")
         self.ryibooking_form_errors = (By.CSS_SELECTOR, "div.formModel div.common_sections.form_error")
+
+        # ryi-form-field
+        self.ryibooking_form_title = (By.ID, "title")
+        self.ryibooking_form_firstname = (By.ID, "firstName")
+        self.ryibooking_form_lastname = (By.ID, "lastName")
+        self.ryibooking_form_email = (By.ID, "email")
+        self.ryibooking_form_mobile = (By.ID, "mobile")
+        self.ryibooking_form_birthday = (By.ID, "birthDay")
+        # licence has default value, ignore.
+        self.ryibooking_form_motocycle = (By.ID, "myBikeName")
+        self.ryibooking_form_viaemail = (By.ID, "useEmail")
+        self.ryibooking_form_viaphone = (By.ID, "usePhone")
         self.ryibooking_form_viapost = (By.ID, "usePost")
