@@ -31,6 +31,11 @@ class ElementsDefine(object):
         self.ryibooking_form_birthday = (By.ID, "birthDay")
         # licence has default value, ignore.
         self.ryibooking_form_motocycle = (By.ID, "myBikeName")
-        self.ryibooking_form_viaemail = (By.ID, "useEmail")
-        self.ryibooking_form_viaphone = (By.ID, "usePhone")
-        self.ryibooking_form_viapost = (By.ID, "usePost")
+        self.ryibooking_form_viaemail = (By.CSS_SELECTOR, "div.formModel__inner div.common_form-radio-container label.common_form-label[for='useEmail']")
+        self.ryibooking_form_viaphone = (By.CSS_SELECTOR, "div.formModel__inner div.common_form-radio-container label.common_form-label[for='usePhone']")
+        self.ryibooking_form_viapost = (By.CSS_SELECTOR, "div.formModel__inner div.common_form-radio-container label.common_form-label[for='usePost']")
+
+        # ryi-thankyou
+        self.ryithankyou_bikelist = (By.CSS_SELECTOR, "div.thanksPage div.thanksPage__main div.bikeList")
+        self.ryithankyou_bikelist_title = (By.CSS_SELECTOR, "div.bikeList__titleBox p.bikeList__title")
+        self.ryithankyou_bikelist_list = (By.CSS_SELECTOR, "div.bikeList__out .slick-list a.bikeList__box")

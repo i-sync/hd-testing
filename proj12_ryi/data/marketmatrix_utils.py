@@ -41,20 +41,30 @@ def get_bike_matrix():
     """
     wb = openpyxl.load_workbook(__matrix_file_name__)
     sheet = wb["RYI"]
-    bike_column =["J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"]
+    bike_category = {
+        "custom": ["J", "K", "L", "M", "N"],
+        "performance": ["O", "P", "Q"],
+        "touring": ["R", "S", "T"]
+    }
+
+    # bike_column = ["J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"]
+    bike_column = [col for c in [bike_category[key] for key in bike_category.keys()] for col in c]
     bike_code = {}
     for col in bike_column:
-        id = sheet["{}1".format(col)].value
-        bike_code[col]= id
+        code = sheet["{}1".format(col)].value
+        bike_code[col] = code
 
     res = {}
     for index in range(4, 37):
         locale = sheet["B{}".format(index)].value.split()[0]
-        res[locale] = []
-        for col in bike_column:
-            cc = sheet["{}{}".format(col, index)].value
-            if cc and  not cc.startswith("N"):
-                res[locale].append(bike_code[col])
+        res[locale] = {}
+        for key in bike_category.keys():
+            res[locale][key] = []
+            column = bike_category[key]
+            for col in column:
+                cc = sheet["{}{}".format(col, index)].value
+                if cc and not cc.startswith("N"):
+                    res[locale][key].append(bike_code[col])
 
     wb.close()
     return res

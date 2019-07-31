@@ -10,7 +10,8 @@ from driver.browser import *
 from selenium.webdriver.common.keys import Keys
 import selenium.webdriver.support.expected_conditions as EC
 
-from proj12_ryi.data.locales import *
+#from proj12_ryi.data.locales import *
+from proj12_ryi.data.marketmatrix_utils import *
 from proj12_ryi.page.booking_process_page import BookingProcessPage
 
 from common.fake_email_address import pick_one_address
@@ -22,7 +23,7 @@ class TestRyiBookingProcess(unittest.TestCase):
     """
     @classmethod
     def setUpClass(cls):
-        cls.driver = firefox_browser()
+        cls.driver = chrome_browser()
         cls.currentPage = BookingProcessPage(cls.driver)
 
     @classmethod
@@ -35,7 +36,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         12. MY20 RYI Booking process :select dealer
         """
         #open dealer page
-        self.currentPage.url = "/{}/location".format("en_GB")
+        self.currentPage.url = "/{}/ryi-dealer".format("en_GB")
         self.currentPage.open()
 
         # input letter a
@@ -55,7 +56,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         self.currentPage.click_element(self.currentPage.element.dealerpage_next_button, refresh_page=True)
 
         #
-        self.assertIn("ryibooking", self.driver.current_url.lower(), "Select dealer page Error! : [{}], it should be the ryi-booking.".format(self.driver.current_url))
+        self.assertIn("ryi-booking", self.driver.current_url.lower(), "Select dealer page Error! : [{}], it should be the ryi-booking.".format(self.driver.current_url))
 
     @pytest.mark.run(order=20)
     def test_ryi_booking_error_validation(self):
@@ -66,7 +67,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         :return:
         """
 
-        self.assertIn("ryibooking", self.driver.current_url.lower(), "The current url is incorrent : [{}], it should be the ryi-booking.".format(self.driver.current_url))
+        self.assertIn("ryi-booking", self.driver.current_url.lower(), "The current url is incorrent : [{}], it should be the ryi-booking.".format(self.driver.current_url))
 
         # click the via post checkbox
         self.currentPage.click_element(self.currentPage.element.ryibooking_form_viapost)
@@ -133,7 +134,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         self.currentPage.script('document.querySelector("#birthDay").value = "{}"'.format(form_data["birthday"]))
 
         # 8. Motocycle
-        self.currentPage.select_element_by_visible_text(self.currentPage.element.ryibooking_form_motocycle, form_data["motocycle"])
+        self.currentPage.select_element_by_value(self.currentPage.element.ryibooking_form_motocycle, form_data["motocycle"])
 
         # 9. Via Email
         self.currentPage.click_element(self.currentPage.element.ryibooking_form_viaemail)
@@ -148,7 +149,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         self.currentPage.click_element(self.currentPage.element.ryibooking_submit_button, refresh_page=True)
 
         # 12 check the URL if correct.
-        self.assertIn("select", self.driver.current_url.lower(), "The current url is incorrent :[{}], it should be the ryi-thankyou.".format(self.driver.current_url))
+        self.assertIn("ryi-thankyou", self.driver.current_url.lower(), "The current url is incorrent :[{}], it should be the ryi-thankyou.".format(self.driver.current_url))
 
     @pytest.mark.run(order=30)
     def test_ryi_thankyou_page_title(self):
@@ -165,11 +166,45 @@ class TestRyiBookingProcess(unittest.TestCase):
         3. Check those two bikelist if equal?
         :return:
         """
-        # 0. locale
+        # 0. locale : [https://hdguest:MLP%402017@my20-ryi.proferochina.com/en_GB/Select]
         locale = self.driver.current_url.split('/')[-2]
 
         # 1. Get bikelist matrix
-        pass
+        bikes = get_bike_matrix()[locale]
+        #self.currentPage.logger.warning(bikes)
+        # 2. Get page bike list
+        res = []
+        categories = self.currentPage.find_elements(self.currentPage.element.ryithankyou_bikelist)
+        for c in categories:
+            title = c.find_element_by_css_selector(self.currentPage.element.ryithankyou_bikelist_title[1]).text.strip()
+            bl = c.find_elements_by_css_selector(self.currentPage.element.ryithankyou_bikelist_list[1])
+            bikeid = [a.get_attribute("href").split("=")[1] for a in bl if a.get_attribute("href") and a.get_attribute("href").find("=") > -1]
+            if not sorted(bikes[title.strip().lower()]) == sorted(bikeid):
+                res.append("Locale: [{}], Category: [{}], Matrix: [{}], Page: [{}]".format(locale, title, sorted(bikes[title.strip().lower()]), sorted(bikeid)))
+                self.currentPage.logger.warning(res[-1])
+
+        if len(res):
+            assert 0, "Some bike list is incorrect"
+
+    @pytest.mark.run(order=32)
+    def test_ryi_thankyou_select_bike(self):
+        """
+        Click one bike, goto booking page.
+        :return:
+        """
+
+        bikes = self.currentPage.find_elements(self.currentPage.element.ryithankyou_bikelist_list)
+        with self.currentPage.wait_for_page_load():
+            bike = choice(bikes)
+            bike.click()
+
+        #self.currentPage.click_element(self.currentPage.element.ryithankyou_bikelist_list, refresh_page=True)
+
+        # check the URL if correct.
+        self.assertIn("booking", self.driver.current_url.lower(),
+                      "The current url is incorrent :[{}], it should be the booking.".format(
+                          self.driver.current_url))
+        self.currentPage.logger.warning(self.driver.current_url)
 
 if __name__ == "__main__":
     unittest.main()
