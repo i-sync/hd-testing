@@ -22,6 +22,13 @@ class ElementsDefine(object):
         self.ryibooking_submit_button = (By.CSS_SELECTOR, "div.formModel div.common_sections button.common-cta_btn")
         self.ryibooking_form_errors = (By.CSS_SELECTOR, "div.formModel div.common_sections.form_error")
 
+        #ryi-booking-popup
+        self.ryibooking_privacy_page_link = (By.CSS_SELECTOR, "div.formModel div.common_sections p.paragraph__body-mid a.org-colored")
+        self.ryibooking_privacy_first_popup = (By.CSS_SELECTOR, "div.formModel div.common_sections div.popup.firstPop")
+        self.ryibooking_privacy_second_popup = (By.CSS_SELECTOR, "div.formModel div.common_sections div.popup.secondPop")
+        self.ryibooking_privacy_first_popup_close = (By.CSS_SELECTOR, "div.formModel div.common_sections div.popup.firstPop div.popup__close")
+        self.ryibooking_privacy_second_popup_close = (By.CSS_SELECTOR, "div.formModel div.common_sections div.popup.secondPop div.popup__close")
+
         # ryi-form-field
         self.ryibooking_form_title = (By.ID, "title")
         self.ryibooking_form_firstname = (By.ID, "firstName")

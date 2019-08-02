@@ -86,10 +86,46 @@ class TestRyiBookingProcess(unittest.TestCase):
 
     @pytest.mark.run(order=21)
     def test_ryi_booking_page_title(self):
+        """
+        RYI Booking page title checking.
+        :return:
+        """
         page_title = "Harley-Davidson® | Low Rider® S RYI - Enter your details"
         self.assertEqual(page_title, self.driver.title, "RYI Booking page title is incorrect: [{}]".format(self.driver.title))
 
     @pytest.mark.run(order=22)
+    def test_ryi_booking_page_privacy_popup(self):
+        """
+        RYI booking page privacy popup checking
+        1. click page privacy notification link.
+        2. check the first popup if showing.
+        3. click the first popup close icon, check if the first popup if closing.
+        :return:
+        """
+
+        # click privacy notification link
+        self.currentPage.click_element(self.currentPage.element.ryibooking_privacy_page_link)
+
+        # waiting for privacy popup showing
+        self.currentPage.wait_for_page_element(
+            EC.visibility_of_element_located(self.currentPage.element.ryibooking_privacy_first_popup))
+
+        # check the privacy popup is visible
+        self.assertTrue(self.currentPage.find_element(
+            self.currentPage.element.ryibooking_privacy_first_popup).is_displayed(), "Privacy popup is not showing.")
+
+        # click the first popup close icon
+        self.currentPage.click_element(self.currentPage.element.ryibooking_privacy_first_popup_close)
+
+        # waiting for first popup closing
+        self.currentPage.wait_for_page_element(
+            EC.invisibility_of_element_located(self.currentPage.element.ryibooking_privacy_first_popup))
+
+        # check the first popup is not visible
+        self.assertFalse(self.currentPage.find_element(
+            self.currentPage.element.ryibooking_privacy_first_popup).is_displayed(), "First popup is not closing.")
+
+    @pytest.mark.run(order=23)
     def test_ryi_booking_submit(self):
         """
         MY20 RYI booking process: auto submit booking
@@ -153,6 +189,10 @@ class TestRyiBookingProcess(unittest.TestCase):
 
     @pytest.mark.run(order=30)
     def test_ryi_thankyou_page_title(self):
+        """
+        Check ryi thankyou page title.
+        :return:
+        """
         page_title = "Harley-Davidson® | Low Rider® S RYI - Thanks"
         self.assertEqual(page_title, self.driver.title, "RYI Thankyou title is incorrect: [{}]".format(self.driver.title))
 
