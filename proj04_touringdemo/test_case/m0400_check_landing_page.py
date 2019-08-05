@@ -9,7 +9,6 @@ from driver.browser import *
 
 from proj04_touringdemo.page.landing_page import LandingPage
 from proj04_touringdemo.report.report import *
-case_name = os.path.basename(__file__).split('.')[0]
 
 @pytest.mark.my19R
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
@@ -29,15 +28,17 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
         #check online locale
         for locale in locales:
             time.sleep(3)
-            # open landing page6
-            self.landingPage.open()
             # country select
             self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale,refresh_page=True)
-            # check
+            # check url
             try:
                 self.assertIn(locale, self.driver.current_url)
             except AssertionError as result:
-                info="Touring Demo(My19 Recommission) landing page checking. this locale is error\n"+locale+"\n please review error result%s"% result
+                info = "Touring Demo(My19 Recommission) landing page checking. this locale is error\n"+locale+"\n please review error result%s"% result
                 self.landingPage.logger.info(info)
+
+            # open landing page
+            self.landingPage.open()
+
 if __name__ == "__main__":
     unittest.main()

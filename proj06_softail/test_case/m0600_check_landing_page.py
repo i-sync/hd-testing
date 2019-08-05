@@ -24,7 +24,7 @@ class TestSoftailCheckLandingPage(unittest.TestCase):
         :param img_name:
         :return:
         """
-        self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
+        # self.driver.get_screenshot_as_file('{}/{}.png'.format(os.path.abspath(BeautifulReport.img_path), img_name))
 
     def test_softail_check_landing_page(self):
         """
