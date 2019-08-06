@@ -1,5 +1,5 @@
 """
-Touring Demo(My19 Recommission) landing page checking.
+Touring Demo(My19 Recommission) header&footer  checking.
 """
 
 import unittest
@@ -40,17 +40,15 @@ class TestTouringDemoCheckHeaderFooterPage(unittest.TestCase):
             self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale,refresh_page=True)
             # get footer link list
             get_footer_links_page = self.bookingPage.get_list_by_attribute(self.bookingPage.element.footerIconHrefs,"href")
-            if locale in["de_AT","de_CH"]:
-                time.sleep(3)
-                self.bookingPage.logger.info(get_footer_list[locale])
             # assert footer icon links
             try:
                 for footerHref in get_footer_links_page:
                     self.assertTrue(footerHref in get_footer_list[locale])
 
             except AssertionError as result:
-                self.bookingPage.logger.info(
-                    "Touring Demo(My19 Recommission) footerHref check issue locale is \n"+locale+" ,\n please review error result%s" % result)
+                info= "Touring Demo(My19 Recommission) footerHref check issue locale is \n"+locale+" ,\n please review error result%s" % result
+                self.bookingPage.logger.warning(info)
+                self.bookingPage.logger.info(info)
 
             #sleep
             time.sleep(3)
@@ -68,8 +66,9 @@ class TestTouringDemoCheckHeaderFooterPage(unittest.TestCase):
                         else:
                             self.assertTrue(menuHref in get_menu_links_list[locale])
             except AssertionError as result:
-                self.bookingPage.logger.info(
-                    "Touring Demo(My19 Recommission) header&footer link checking.this locale has some issue ,\n please review error result%s" % result)
+                information = "Touring Demo(My19 Recommission) header&footer link checking.this locale has some issue ,\n please review error result%s" % result
+                self.bookingPage.logger.warning(information)
+                self.bookingPage.logger.info(information)
 
 
 if __name__ == "__main__":
