@@ -50,3 +50,6 @@ class ElementsDefine(object):
         self.ryithankyou_bikelist = (By.CSS_SELECTOR, "div.thanksPage div.thanksPage__main div.bikeList")
         self.ryithankyou_bikelist_title = (By.CSS_SELECTOR, "div.bikeList__titleBox p.bikeList__title")
         self.ryithankyou_bikelist_list = (By.CSS_SELECTOR, "div.bikeList__out .slick-list a.bikeList__box")
+
+        # footer <a>
+        self.footerIconHrefs = (By.CSS_SELECTOR, "div.footer__share-container a[target='_blank']")

@@ -37,15 +37,17 @@ class TestRyiFooterProcess(unittest.TestCase):
         get_footer_links = get_footer_matrix()
 
         for locale in All_Locales:
-            #open landing page
-            self.currentPage.url = "/landing"
-            self.currentPage.open()
+            locale = "en_GB"
+            # #open landing page
+            # self.currentPage.url = "/landing"
+            # self.currentPage.open()
             # country select
-            self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale,
+            self.currentPage.select_element_by_value(self.currentPage.element.landing_country_select, locale,
                                                      refresh_page=True)
             # get footer link list
-            get_footer_links_page = self.bookingPage.get_list_by_attribute(self.bookingPage.element.footerIconHrefs,
+            get_footer_links_page = self.currentPage.get_list_by_attribute(self.currentPage.element.footerIconHrefs,
                                                                            "href")
+
             # assert footer icon links
             try:
                 for footerHref in get_footer_links_page:
