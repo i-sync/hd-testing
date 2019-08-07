@@ -68,23 +68,3 @@ def get_bike_matrix():
 
     wb.close()
     return res
-def get_footer_matrix():
-    """
-    Get all soical link matrix
-    locale column B
-    Facebook Url column U
-    Instagram Url column V
-    Twitter Url column W
-    :return:
-    """
-    wb = openpyxl.load_workbook(__matrix_file_name__)
-    sheet = wb["RYI"]
-    res = {}
-    for index in range(2, 44):
-        locale = sheet["B{}".format(index)].value.split()[0]
-        facebook = sheet["U{}".format(index)].value
-        instagram = sheet["V{}".format(index)].value
-        twitter = sheet["W{}".format(index)].value
-        res[locale] = [facebook, instagram, twitter]
-    wb.close()
-    return res

@@ -16,6 +16,7 @@ class ElementsDefine(object):
         #homepage
         self.homepage_cookiemodel = (By.CSS_SELECTOR, "div.cookieModel p.cookieModel__title")
         self.homepage_cookiemodel_close = (By.CSS_SELECTOR, "div.cookieModel button.cookieModel__close")
+        self.hoempage_social_link = (By.CSS_SELECTOR, "div.footer__share-container a[target='_blank']")
 
         #dealer page
         self.dealerpage_dealer_locate = (By.ID, "searchTextField")
@@ -50,6 +51,3 @@ class ElementsDefine(object):
         self.ryithankyou_bikelist = (By.CSS_SELECTOR, "div.thanksPage div.thanksPage__main div.bikeList")
         self.ryithankyou_bikelist_title = (By.CSS_SELECTOR, "div.bikeList__titleBox p.bikeList__title")
         self.ryithankyou_bikelist_list = (By.CSS_SELECTOR, "div.bikeList__out .slick-list a.bikeList__box")
-
-        # footer <a>
-        self.footerIconHrefs = (By.CSS_SELECTOR, "div.footer__share-container a[target='_blank']")

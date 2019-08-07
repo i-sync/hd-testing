@@ -33,7 +33,7 @@ class TestSpringDemoCheckHomePage(unittest.TestCase):
             self.homepage.open()
 
             #get social link
-            social_links = self.homepage.get_social_links(locale)
+            social_links = self.homepage.get_social_links()
             for sl in social_links:
                 self.assertTrue(sl in social_link_matrix[locale])
             break

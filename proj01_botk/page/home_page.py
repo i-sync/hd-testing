@@ -22,11 +22,10 @@ class HomePage(Page):
         super(HomePage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
 
-    def get_social_links(self, locale):
+    def get_social_links(self):
         """
         Get HomePage Social Link
-        :param locale:
         :return:
         """
-        self.social_links = self.find_elements(self.element.homepage_social_link)
-        return [a.get_attribute("href") for a in self.social_links if a.get_attribute("href")]
+        social_links = self.find_elements(self.element.homepage_social_link)
+        return [a.get_attribute("href") for a in social_links if a.get_attribute("href")]

@@ -34,7 +34,7 @@ class TestBOTK2019CheckHomePage(unittest.TestCase):
             self.homepage.open()
 
             #get social link
-            social_links = self.homepage.get_social_links(locale)
+            social_links = self.homepage.get_social_links()
             if not sorted(social_links) == sorted(social_link_matrix[locale]):
                 info = "locale: [{}] soical links is not equal.\r\npage social links: {}\r\nmatrix social links:{}".format(
                     locale, sorted(social_links), sorted(social_link_matrix[locale]))

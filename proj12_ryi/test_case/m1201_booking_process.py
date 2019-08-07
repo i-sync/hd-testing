@@ -9,11 +9,11 @@ from random import choice
 from driver.browser import *
 from selenium.webdriver.common.keys import Keys
 import selenium.webdriver.support.expected_conditions as EC
+from parameterized import parameterized, parameterized_class
 
 #from proj12_ryi.data.locales import *
 from proj12_ryi.data.marketmatrix_utils import *
 from proj12_ryi.page.booking_process_page import BookingProcessPage
-
 from common.fake_email_address import pick_one_address
 
 @pytest.mark.ryi
