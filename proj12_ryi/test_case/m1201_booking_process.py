@@ -185,7 +185,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         self.currentPage.click_element(self.currentPage.element.ryibooking_submit_button, refresh_page=True)
 
         # 12 check the URL if correct.
-        self.assertIn("ryi-thankyou", self.driver.current_url.lower(), "The current url is incorrent :[{}], it should be the ryi-thankyou.".format(self.driver.current_url))
+        self.assertIn("ryi-thankyou", self.driver.current_url.lower(), "The current url is incorrect :[{}], it should be the ryi-thankyou.".format(self.driver.current_url))
 
     @pytest.mark.run(order=30)
     def test_ryi_thankyou_page_title(self):

@@ -17,9 +17,7 @@ class HomePage(Page):
         init function
         :param driver:
         """
-        self.url = "/"
-        #self.driver = driver
-        #self.base_url = current_url()
+        self.url = "/{}/home"
         super(HomePage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
 
@@ -28,5 +26,5 @@ class HomePage(Page):
         Get HomePage Social Link
         :return:
         """
-        social_links = self.find_elements(self.element.hoempage_social_link)
+        social_links = self.find_elements(self.element.homepage_social_link)
         return [a.get_attribute("href") for a in social_links if a.get_attribute("href")]
