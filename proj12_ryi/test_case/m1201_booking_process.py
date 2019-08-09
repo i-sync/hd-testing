@@ -39,6 +39,8 @@ class TestRyiBookingProcess(unittest.TestCase):
         self.currentPage.url = "/{}/ryi-dealer".format("en_GB")
         self.currentPage.open()
 
+        time.sleep(1)
+
         # input letter a
         self.currentPage.input_element_value(self.currentPage.element.dealerpage_dealer_locate, 'a')
 
@@ -218,7 +220,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         for c in categories:
             title = c.find_element_by_css_selector(self.currentPage.element.ryithankyou_bikelist_title[1]).text.strip()
             bl = c.find_elements_by_css_selector(self.currentPage.element.ryithankyou_bikelist_list[1])
-            bikeid = [a.get_attribute("href").split("=")[1] for a in bl if a.get_attribute("href") and a.get_attribute("href").find("=") > -1]
+            bikeid = [a.get_attribute("data-href").split("=")[1] for a in bl if a.get_attribute("data-href") and a.get_attribute("data-href").find("=") > -1]
             if not sorted(bikes[title.strip().lower()]) == sorted(bikeid):
                 res.append("Locale: [{}], Category: [{}], Matrix: [{}], Page: [{}]".format(locale, title, sorted(bikes[title.strip().lower()]), sorted(bikeid)))
                 self.currentPage.logger.warning(res[-1])
@@ -233,9 +235,9 @@ class TestRyiBookingProcess(unittest.TestCase):
         :return:
         """
 
-        bikes = self.currentPage.find_elements(self.currentPage.element.ryithankyou_bikelist_list)
+        bike = self.currentPage.find_elements(self.currentPage.element.ryithankyou_bikelist_list)[-1]
+        bike.click()
         with self.currentPage.wait_for_page_load():
-            bike = choice(bikes)
             bike.click()
 
         #self.currentPage.click_element(self.currentPage.element.ryithankyou_bikelist_list, refresh_page=True)
