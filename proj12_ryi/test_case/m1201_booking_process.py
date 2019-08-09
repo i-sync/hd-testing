@@ -242,12 +242,15 @@ class TestRyiBookingProcess(unittest.TestCase):
         # 2. Get page bike list
         res = []
         categories = self.currentPage.find_elements(self.currentPage.element.ryithankyou_bikelist)
-        for c in categories:
+        cant_decide = self.currentPage.find_element(self.currentPage.element.ryithankyou_cant_decide)
+        for index, c in enumerate(categories):
             title = c.find_element_by_css_selector(self.currentPage.element.ryithankyou_bikelist_title[1]).text.strip()
             bl = c.find_elements_by_css_selector(self.currentPage.element.ryithankyou_bikelist_list[1])
             bikeid = [a.get_attribute("data-href").split("=")[1] for a in bl if a.get_attribute("data-href") and a.get_attribute("data-href").find("=") > -1]
-            if not sorted(bikes[title.strip().lower()]) == sorted(bikeid):
-                res.append("Locale: [{}], Category: [{}], Matrix: [{}], Page: [{}]".format(locale, title, sorted(bikes[title.strip().lower()]), sorted(bikeid)))
+            if index == 2:
+                bikeid.append(cant_decide.get_attribute('href').split("=")[1])
+            if not sorted(bikes[index]) == sorted(bikeid):
+                res.append("Locale: [{}], Category: [{}], Matrix: [{}], Page: [{}]".format(locale, title, sorted(bikes[index]), sorted(bikeid)))
                 self.currentPage.logger.warning(res[-1])
 
         if len(res):

@@ -57,9 +57,9 @@ def get_bike_matrix():
     wb = openpyxl.load_workbook(__matrix_file_name__)
     sheet = wb["RYI"]
     bike_category = {
-        "custom": ["K", "L", "M", "N", "O"],
-        "performance": ["P", "Q", "R"],
-        "touring": ["S", "T", "U"]
+        0: ["K", "L", "M", "N", "O"],
+        1: ["P", "Q", "R"],
+        2: ["S", "T", "U"]
     }
 
     # bike_column = ["K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"]
