@@ -94,5 +94,22 @@ class TestRYICheckHomePage(unittest.TestCase):
         if len(res):
             assert 0, "some locale footer link is not correct, please see the log."
 
+    def test_ryi_check_footer_country_list(self):
+        """
+        MY20 RYI homepage check footer country_list
+        Only check en_GB locale
+        :return:
+        """
+        # open locale homePage
+        self.homePage.url = "/{}/home".format("en_GB")
+        self.homePage.open()
+
+        options = self.homePage.find_elements(self.homePage.element.homepage_footer_country_list)
+        opts = [o.get_attribute('value') for o in options if o.get_attribute('value') and o.get_attribute('value') != "SWITCH LOCATION"]
+
+        self.homePage.logger.warning(sorted(opts))
+        self.homePage.logger.warning(sorted(get_all_locale()))
+        self.assertListEqual(sorted(opts), sorted(get_all_locale()))
+
 if __name__ == "__main__":
     unittest.main()
