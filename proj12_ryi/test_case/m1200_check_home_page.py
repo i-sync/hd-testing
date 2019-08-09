@@ -68,5 +68,31 @@ class TestRYICheckHomePage(unittest.TestCase):
             self.assertIn("ryi-dealer", self.driver.current_url.lower(),
                           f"The current url is not correct :[{self.driver.current_url}], it should be the ryi-dealer.")
 
+    def test_ryi_check_footer_link(self):
+        """
+        MY20 RYI homepage check footer links
+        :return:
+        """
+        footer_links = ["privacy-policy", "terms-of-use", "we-care-about-you", "cookie-policy", "cookie-opt-out"]
+        link_template = "https://www.harley-davidson.com/{}/{}/footer/utility/{}.html"
+
+
+        res = []
+        for locale in All_Locales:
+            # open locale homePage
+            self.homePage.url = "/{}/home".format(locale)
+            self.homePage.open()
+
+            page_footer_links = self.homePage.find_elements(self.homePage.element.homepage_footer_link)
+            for index, link in enumerate(page_footer_links):
+                href = link.get_attribute('href')
+                target = link.get_attribute('target')
+                if target != "_blank" or href != link_template.format(locale.split('_')[1], locale.split('_')[0], footer_links[index]).lower():
+                    res.append(f"locale: {locale}, footer link:{href} is incorrect, target: {target} !")
+                    self.homePage.logger.warning(res[-1])
+
+        if len(res):
+            assert 0, "some locale footer link is not correct, please see the log."
+
 if __name__ == "__main__":
     unittest.main()
