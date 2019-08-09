@@ -107,8 +107,8 @@ class TestRYICheckHomePage(unittest.TestCase):
         options = self.homePage.find_elements(self.homePage.element.homepage_footer_country_list)
         opts = [o.get_attribute('value') for o in options if o.get_attribute('value') and o.get_attribute('value') != "SWITCH LOCATION"]
 
-        self.homePage.logger.warning(sorted(opts))
-        self.homePage.logger.warning(sorted(get_all_locale()))
+        # self.homePage.logger.warning(sorted(opts))
+        # self.homePage.logger.warning(get_all_locale())
         self.assertListEqual(sorted(opts), sorted(get_all_locale()))
 
 if __name__ == "__main__":

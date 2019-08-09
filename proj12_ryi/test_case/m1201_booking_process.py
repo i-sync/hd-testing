@@ -30,13 +30,32 @@ class TestRyiBookingProcess(unittest.TestCase):
     def tearDownClass(cls):
         cls.driver.quit()
 
+    @parameterized.expand(['en_EU', 'en_GB', 'en_IE', 'en_ZZ', 'es_ES', 'fi_FI', 'fr_BE', 'fr_CH', 'fr_FR', 'fr_LU'])
+    def test_ryi_booking_process(self, locale):
+        self.test_ryi_dealer_page(locale)
+
+        self.test_ryi_booking_error_validation()
+
+        self.test_ryi_booking_page_title()
+
+        self.test_ryi_booking_page_privacy_popup()
+
+        self.test_ryi_booking_submit()
+
+        self.test_ryi_thankyou_page_title()
+
+        self.test_ryi_check_bikelist()
+
+        self.test_ryi_thankyou_select_bike()
+
+    @pytest.mark.skip()
     @pytest.mark.run(order=10)
-    def test_ryi_dealer_page(self):
+    def test_ryi_dealer_page(self, locale):
         """
         12. MY20 RYI Booking process :select dealer
         """
         #open dealer page
-        self.currentPage.url = "/{}/ryi-dealer".format("en_GB")
+        self.currentPage.url = "/{}/ryi-dealer".format(locale)
         self.currentPage.open()
 
         time.sleep(1)
@@ -60,6 +79,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         #
         self.assertIn("ryi-booking", self.driver.current_url.lower(), "Select dealer page Error! : [{}], it should be the ryi-booking.".format(self.driver.current_url))
 
+    @pytest.mark.skip()
     @pytest.mark.run(order=20)
     def test_ryi_booking_error_validation(self):
         """
@@ -86,6 +106,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         # check the form_errors number
         self.assertEqual(len(form_errors), len(errors_id))
 
+    @pytest.mark.skip()
     @pytest.mark.run(order=21)
     def test_ryi_booking_page_title(self):
         """
@@ -95,6 +116,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         page_title = "Harley-Davidson® | Low Rider® S RYI - Enter your details"
         self.assertEqual(page_title, self.driver.title, "RYI Booking page title is incorrect: [{}]".format(self.driver.title))
 
+    @pytest.mark.skip()
     @pytest.mark.run(order=22)
     def test_ryi_booking_page_privacy_popup(self):
         """
@@ -127,6 +149,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         self.assertFalse(self.currentPage.find_element(
             self.currentPage.element.ryibooking_privacy_first_popup).is_displayed(), "First popup is not closing.")
 
+    @pytest.mark.skip()
     @pytest.mark.run(order=23)
     def test_ryi_booking_submit(self):
         """
@@ -189,6 +212,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         # 12 check the URL if correct.
         self.assertIn("ryi-thankyou", self.driver.current_url.lower(), "The current url is incorrect :[{}], it should be the ryi-thankyou.".format(self.driver.current_url))
 
+    @pytest.mark.skip()
     @pytest.mark.run(order=30)
     def test_ryi_thankyou_page_title(self):
         """
@@ -198,6 +222,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         page_title = "Harley-Davidson® | Low Rider® S RYI - Thanks"
         self.assertEqual(page_title, self.driver.title, "RYI Thankyou title is incorrect: [{}]".format(self.driver.title))
 
+    @pytest.mark.skip()
     @pytest.mark.run(order=31)
     def test_ryi_check_bikelist(self):
         """
@@ -228,6 +253,7 @@ class TestRyiBookingProcess(unittest.TestCase):
         if len(res):
             assert 0, "Some bike list is incorrect"
 
+    @pytest.mark.skip()
     @pytest.mark.run(order=32)
     def test_ryi_thankyou_select_bike(self):
         """
