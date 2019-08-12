@@ -30,7 +30,11 @@ class TestRyiBookingProcess(unittest.TestCase):
     def tearDownClass(cls):
         cls.driver.quit()
 
-    @parameterized.expand(['en_EU', 'en_GB', 'en_IE', 'en_ZZ', 'es_ES', 'fi_FI', 'fr_BE', 'fr_CH', 'fr_FR', 'fr_LU'])
+    # @parameterized.expand(['en_EU', 'en_GB', 'en_IE', 'en_ZZ', 'es_ES', 'fi_FI', 'fr_BE', 'fr_CH', 'fr_FR', 'fr_LU'])
+    #@parameterized.expand(['cs_CZ', 'da_DK', 'de_AT', 'de_CH', 'de_DE', 'en_AA', 'en_CA', 'en_EU', 'en_GB', 'en_IE',
+    #                       'en_ZZ', 'es_ES', 'es_MX', 'es_XX', 'fi_FI', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_FR', 'fr_LU',
+    #                       'hu_HU', 'it_CH', 'it_IT', 'nl_BE', 'nl_NL', 'no_NO', 'pl_PL', 'pt_PT', 'ru_RU', 'sv_SE'])
+    @parameterized.expand(['ru_RU'])
     def test_ryi_booking_process(self, locale):
         self.test_ryi_dealer_page(locale)
 
@@ -47,6 +51,12 @@ class TestRyiBookingProcess(unittest.TestCase):
         self.test_ryi_check_bikelist()
 
         self.test_ryi_thankyou_select_bike()
+
+        self.test_booking_title()
+
+        self.test_booking_form()
+
+        self.test_thankyou_title()
 
     @pytest.mark.skip()
     @pytest.mark.run(order=10)
@@ -276,6 +286,46 @@ class TestRyiBookingProcess(unittest.TestCase):
                       "The current url is incorrent :[{}], it should be the booking.".format(
                           self.driver.current_url))
         self.currentPage.logger.warning(self.driver.current_url)
+
+    @pytest.mark.skip()
+    def test_booking_title(self):
+        """
+        Check booking page title
+        :return:
+        """
+        page_title = "Harley-Davidson® | Low Rider® S RYI - Softail test ride"
+        self.assertEqual(page_title, self.driver.title,
+                         "Booking title is incorrect: [{}]".format(self.driver.title))
+
+    @pytest.mark.skip()
+    def test_booking_form(self):
+        """
+        Submit booking form
+        :return:
+        """
+
+        #self.currentPage.input_element_value(self.currentPage.element.booking_form_email, "michael.tian@profero.com")
+
+        # wait for the button
+        self.currentPage.wait_for_page_element(
+            EC.element_to_be_clickable(self.currentPage.element.booking_submit_button))
+
+        self.currentPage.click_element(self.currentPage.element.booking_submit_button, refresh_page=True)
+
+        # check the URL if correct.
+        self.assertIn("thankyou", self.driver.current_url.lower(),
+                      f"The current url is incorrect: [{self.driver.current_url}], it should be the final thankyou.")
+
+    @pytest.mark.skip()
+    def test_thankyou_title(self):
+        """
+        Check final thankyou page title
+        :return:
+        """
+        page_title = "Harley-Davidson® | Low Rider® S RYI - Softail test ride thanks"
+        self.assertEqual(page_title, self.driver.title,
+                         "Final thankyou page title is incorrect: [{}]".format(self.driver.title))
+
 
 if __name__ == "__main__":
     unittest.main()

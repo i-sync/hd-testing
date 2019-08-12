@@ -55,5 +55,10 @@ class ElementsDefine(object):
         self.ryithankyou_bikelist_title = (By.CSS_SELECTOR, "div.bikeList__titleBox p.bikeList__title")
         self.ryithankyou_bikelist_list = (By.CSS_SELECTOR, "div.bikeList__out a.bikeList__box")
         self.ryithankyou_cant_decide = (By.CSS_SELECTOR, "div.thanksPage div.thanksPage__main div.thanksPage__decide a")
+
+        # booking
+        self.booking_form_email = (By.ID, "email")
+        self.booking_submit_button = (By.CSS_SELECTOR, "form div.formModel div.common_sections button.common-cta_btn")
+
         # ryi-error
         self.errorpage_goback_button = (By.CSS_SELECTOR, "div.errorModel div.errorModel__section a.common-cta_btn")
