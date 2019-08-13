@@ -111,5 +111,32 @@ class TestRYICheckHomePage(unittest.TestCase):
         # self.homePage.logger.warning(get_all_locale())
         self.assertListEqual(sorted(opts), sorted(get_all_locale()))
 
+    def test_ryi_check_tracking_code(self):
+        """
+        MY20 RYI homepage check tracking code
+        :return:
+        """
+
+        # dtm_script = "<script src=\"//assets.adobedtm.com/launch-EN809b0f5705984a49bcf4ef12cfbb5073-development.min.js\" async></script>"
+        # grm_script = "<script src='//grmtech.net/r/de806fec5af7f5b48b8a31a003e171f3fb.js' async defer></script>"
+        dtm_script_id = "launch-EN809b0f5705984a49bcf4ef12cfbb5073-development.min.js"
+        grm_script_id = "de806fec5af7f5b48b8a31a003e171f3fb.js"
+
+        res = []
+        for locale in All_Locales:
+            # open locale homePage
+            self.homePage.url = "/{}/home".format(locale)
+            self.homePage.open()
+
+            if dtm_script_id not in self.driver.page_source:
+                res.append(f"Locale :{locale}, missing DTM Tracking Code!")
+                self.homePage.logger.warning(res[-1])
+            if locale != "en_ZZ" and grm_script_id not in self.driver.page_source:
+                res.append(f"Locale :{locale}, missing Media Tracking Code!")
+                self.homePage.logger.warning(res[-1])
+
+        if len(res):
+            assert 0, "some tracking code  is not correct, please see the log."
+
 if __name__ == "__main__":
     unittest.main()
