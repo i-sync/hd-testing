@@ -13,9 +13,9 @@ def get_social_matrix():
     """
     Get all soical link matrix
     locale column B
-    Facebook Url column V
-    Instagram Url column W
-    Twitter Url column X
+    Facebook Url column W
+    Instagram Url column X
+    Twitter Url column Y
     :return:
     """
     wb = openpyxl.load_workbook(__matrix_file_name__)
@@ -23,9 +23,9 @@ def get_social_matrix():
     res = {}
     for index in range(4, 35):
         locale = sheet["B{}".format(index)].value.split()[0]
-        facebook = sheet["V{}".format(index)].value
-        instagram = sheet["W{}".format(index)].value
-        twitter = sheet["X{}".format(index)].value
+        facebook = sheet["W{}".format(index)].value
+        instagram = sheet["X{}".format(index)].value
+        twitter = sheet["Y{}".format(index)].value
         res[locale] = [facebook, instagram, twitter]
 
     wb.close()
@@ -50,19 +50,19 @@ def get_bike_matrix():
     """
     Get All bike info matrix
     Custom: K,L,M,N,O
-    Performance: P,Q,R
-    Touring: S,T,U
+    Performance: P,Q,R,S
+    Touring: T,U,V
     :return:
     """
     wb = openpyxl.load_workbook(__matrix_file_name__)
     sheet = wb["RYI"]
     bike_category = {
         0: ["K", "L", "M", "N", "O"],
-        1: ["P", "Q", "R"],
-        2: ["S", "T", "U"]
+        1: ["P", "Q", "R", "S"],
+        2: ["T", "U", "V"]
     }
 
-    # bike_column = ["K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"]
+    # bike_column = ["K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"]
     bike_column = [col for c in [bike_category[key] for key in bike_category.keys()] for col in c]
     bike_code = {}
     for col in bike_column:
