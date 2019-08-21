@@ -12,7 +12,7 @@ from proj04_touringdemo.page.landing_page import LandingPage
 @pytest.mark.live_checker
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
-        self.driver = firefox_browser()
+        self.driver = chrome_browser()
         self.landingPage = LandingPage(self.driver)
     def tearDown(self):
         self.driver.quit()
@@ -32,6 +32,8 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             # country select
             self.landingPage.select_element_by_value(self.landingPage.element.landing_country_select, locale, refresh_page=True)
             # check
-            self.assertIn(locale, self.driver.current_url)
+            # self.assertIn(locale, self.driver.current_url)
+            part_url = "harley-davidson\.com\/.*\/{}\/index\.html".format(locale[:2])
+            self.assertRegex(self.driver.current_url, part_url)
 if __name__ == "__main__":
     unittest.main()
