@@ -12,6 +12,7 @@ pipeline {
                     call venv\\Scripts\\activate.bat
                     pip install -r requirements.txt
                     pytest -n 2 --env=live --headless=True -m live_checker --html=report/report-${BUILD_NUMBER}.html
+                    exit %ERRORLEVEL%
                     deactivate
                 '''
             }
@@ -19,8 +20,7 @@ pipeline {
     }
     post{
         failure {
-            emailext body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-                <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+            emailext body: '''${SCRIPT, template="groovy-html.template"}''',
                 mimeType: 'text/html',
                 subject: "[Jenkins] ${currentBuild.fullDisplayName}",
                 to: "michael.tian@profero.com, libby.qin@mullenloweprofero.com, ben.zhang@mullenloweprofero.com",
