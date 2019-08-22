@@ -49,11 +49,11 @@ class TestTouringDemoCheckBookingFormPage(unittest.TestCase):
             self.bookingPage.input_element_value(self.bookingPage.element.dealerMap, "OP")
             # choose first map
             time.sleep(3)
-            self.bookingPage.key_Action(Keys.DOWN)
+            self.bookingPage.key_action(Keys.DOWN)
             time.sleep(0.5)
-            self.bookingPage.key_Action(Keys.ENTER)
+            self.bookingPage.key_action(Keys.ENTER)
             time.sleep(0.5)
-            self.bookingPage.key_Action(Keys.ENTER)
+            self.bookingPage.key_action(Keys.ENTER)
             time.sleep(3)
             # submit form when all forms are empty
             self.bookingPage.click_element(self.bookingPage.element.requestTestRideButton)

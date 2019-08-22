@@ -35,5 +35,6 @@ class TestTouringDemoCheckLandingPage(unittest.TestCase):
             # self.assertIn(locale, self.driver.current_url)
             part_url = "harley-davidson\.com\/.*\/{}\/index\.html".format(locale[:2])
             self.assertRegex(self.driver.current_url, part_url)
+
 if __name__ == "__main__":
     unittest.main()

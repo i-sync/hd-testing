@@ -1,3 +1,3 @@
 {
-  "dev": "http://hdguest:MLP@2017@trbf.proferochina.com", "staging":"https://hdguest:MLP@2017@staging.testrides.harley-davidson.com", "live":"https://testrides.harley-davidson.com"
+  "dev": "http://hdguest:MLP@2017@trbf.proferochina.com", "staging":"http://hdguest:MLP@2017@staging.testrides.harley-davidson.com", "live":"https://testrides.harley-davidson.com"
 }

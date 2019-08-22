@@ -22,7 +22,7 @@ class HomePage(Page):
         super(HomePage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
 
-    def get_social_links(self, locale):
+    def get_social_links(self):
         """
         Get HomePage Social Link
         :param locale:
