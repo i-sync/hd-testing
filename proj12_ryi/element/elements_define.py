@@ -12,7 +12,7 @@ class ElementsDefine(object):
         #landingPage
         self.landing_country_select = (By.CSS_SELECTOR, "select.common_form-select") #country select
         self.landing_country_options = (By.CSS_SELECTOR, "select.common_form-select option")  # country select option
-        self.landing_Go_button = (By.CSS_SELECTOR,"div.common-cta_btn") # Go button
+        self.landing_go_button = (By.CSS_SELECTOR,"div.common-cta_btn") # Go button
         #homepage
         self.homepage_cookiemodel = (By.CSS_SELECTOR, "div.cookieModel p.cookieModel__title")
         self.homepage_cookiemodel_close = (By.CSS_SELECTOR, "div.cookieModel button.cookieModel__close")

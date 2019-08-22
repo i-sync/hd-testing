@@ -12,7 +12,6 @@ from proj12_ryi.data.locales import *
 from proj12_ryi.page.dealer_page import DealerPage
 
 @pytest.mark.ryi
-@pytest.mark.live_checker
 class TestRYICheckDealerPage(unittest.TestCase):
     """
     MY20 RYI Dealer page
