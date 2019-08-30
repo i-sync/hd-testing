@@ -24,7 +24,21 @@ class BookingProcessPage(Page):
         init function
         :param driver:
         """
-        # self.url = "/{}/home"
+        #self.url = "/{}/home"
         super(BookingProcessPage, self).__init__(driver, current_url())
         self.element = ElementsDefine()
 
+        # titles
+        self.titles = {"home": "Harley-Davidson® | Ride Free",
+                       "select-bike": "Harley-Davidson® | Ride Free - Choose your ride",
+                       "select-dealer": "Harley-Davidson® | Ride Free - Select a dealer",
+                       "booking": "Harley-Davidson® | Ride Free - Enter your details",
+                       "thankyou": "Harley-Davidson® | Ride Free - Thanks"}
+
+    def get_social_links(self):
+        """
+        Get HomePage Social Link
+        :return:
+        """
+        social_links = self.find_elements(self.element.homepage_social_link)
+        return [a.get_attribute("href") for a in social_links if a.get_attribute("href")]

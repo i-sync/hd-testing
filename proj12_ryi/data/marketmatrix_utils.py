@@ -26,7 +26,7 @@ def get_social_matrix():
         facebook = sheet["W{}".format(index)].value
         instagram = sheet["X{}".format(index)].value
         twitter = sheet["Y{}".format(index)].value
-        res[locale] = [facebook, instagram, twitter]
+        res[locale] = [link for link in [facebook, instagram, twitter] if link]
 
     wb.close()
     return res

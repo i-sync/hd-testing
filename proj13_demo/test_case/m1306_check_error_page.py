@@ -17,7 +17,7 @@ class TestDemoCheckErrorPage(unittest.TestCase):
     MY20 DEMO Error page
     """
     def setUp(self):
-        self.driver = chrome_browser()
+        self.driver = firefox_browser()
         self.errorPage = ErrorPage(self.driver)
 
     def tearDown(self):
@@ -45,7 +45,6 @@ class TestDemoCheckErrorPage(unittest.TestCase):
             # check url if is the home
             self.assertIn("home", self.driver.current_url.lower(),
                           f"The current url is not correct :[{self.driver.current_url}], it should be the /home.")
-
 
 
 if __name__ == "__main__":

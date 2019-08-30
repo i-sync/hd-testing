@@ -26,7 +26,7 @@ def get_social_matrix():
         facebook = sheet["AG{}".format(index)].value
         instagram = sheet["AH{}".format(index)].value
         twitter = sheet["AI{}".format(index)].value
-        res[locale] = [facebook, instagram, twitter]
+        res[locale] = [link for link in [facebook, instagram, twitter] if link]
 
     wb.close()
     return res
@@ -61,7 +61,7 @@ def get_bike_matrix():
         0: ["L", "M"],
         1: ["N", "O", "P", "Q"],
         2: ["R", "S", "T", "U", "V", "W", "X"],
-        3: ["Y", "Z", "AA", "AB", "AC", "AD", "AE"]
+        3: ["Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF"]
     }
 
     # bike_column = ["K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"]
