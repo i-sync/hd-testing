@@ -2,7 +2,7 @@
 MY20 Demo Booking process .
 """
 
-import time,os
+import time,os, json
 import unittest
 import pytest
 from random import choice
@@ -220,18 +220,14 @@ class TestDemoBookingProcess(unittest.TestCase):
 
         # 1. Get bikelist matrix
         bikes = get_bike_matrix()[locale]
-        self.currentPage.logger.warning(bikes)
+        # self.currentPage.logger.warning(json.dumps(get_bike_matrix()))
         # 2. Get page bike list
-        res = []
         categories = self.currentPage.find_elements(self.currentPage.element.selectbike_bikelist)
-        cant_decide = self.currentPage.find_element(self.currentPage.element.selectbike_cant_decide)
         for index, c in enumerate(categories):
             title = c.find_element_by_css_selector(self.currentPage.element.selectbike_bikelist_title[1]).text.strip()
             bl = c.find_elements_by_css_selector(self.currentPage.element.selectbike_bikelist_list[1])
             bikeid = [a.get_attribute("href").split("=")[1] for a in bl if
                       a.get_attribute("href") and a.get_attribute("href").find("=") > -1]
-            if index == 3:
-                bikeid.append(cant_decide.get_attribute('href').split("=")[1])
             if not sorted(bikes[index]) == sorted(bikeid):
                 self.currentPage.logger.warning(f"Locale: [{locale}], Category: [{title}], Matrix: [{sorted(bikes[index])}], Page: [{sorted(bikeid)}]")
 

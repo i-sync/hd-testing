@@ -61,7 +61,7 @@ def get_bike_matrix():
         0: ["L", "M"],
         1: ["N", "O", "P", "Q"],
         2: ["R", "S", "T", "U", "V", "W", "X"],
-        3: ["Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF"]
+        3: ["Y", "Z", "AA", "AB", "AC", "AD", "AE"]
     }
 
     # bike_column = ["K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"]
@@ -75,13 +75,19 @@ def get_bike_matrix():
     for index in range(4, 45):
         locale = sheet["C{}".format(index)].value.split()[0]
         res[locale] = {}
+        i = 0
         for key in bike_category.keys():
-            res[locale][key] = []
+            #res[locale][key] = []
+            tmp = []
             column = bike_category[key]
             for col in column:
                 cc = sheet["{}{}".format(col, index)].value
                 if cc and cc.startswith("Y"):
-                    res[locale][key].append(bike_code[col])
+                    #res[locale][key].append(bike_code[col])
+                    tmp.append(bike_code[col])
+            if len(tmp):
+                res[locale][i] = tmp
+                i = i + 1
 
     wb.close()
     return res
