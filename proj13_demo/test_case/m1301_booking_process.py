@@ -424,4 +424,10 @@ class TestDemoBookingProcess(unittest.TestCase):
     def check_thankyou_share_link(self):
         self.currentPage.logger.info(f"<-------[check thankyou page share link]------>")
 
+        share_links = self.currentPage.find_elements(self.currentPage.element.thankyou_share_link)
+        self.assertIn(self.driver.current_url.split("@")[1].strip("/thankyou"), share_links[0].get_attribute("href"),
+                      f"Feckbook share link incorrect")
+        self.assertIn(self.driver.current_url.split("@")[1].strip("/thankyou"), share_links[1].get_attribute("href"),
+                      f"Twitter share link incorrect")
+
         self.currentPage.logger.info(f"</-------[check thankyou page share link]------>")

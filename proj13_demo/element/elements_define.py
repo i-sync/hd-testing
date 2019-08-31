@@ -85,3 +85,6 @@ class ElementsDefine(object):
 
 
         self.booking_submit_button = (By.CSS_SELECTOR, "div.formModel div.common_sections button.common-cta_btn")
+
+        # thankyou page
+        self.thankyou_share_link = (By.CSS_SELECTOR, "div.shareBar div.shareBar__iconBox a[target='_blank']")
