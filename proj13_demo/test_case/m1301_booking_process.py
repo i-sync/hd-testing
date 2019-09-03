@@ -20,16 +20,16 @@ class TestDemoBookingProcess(unittest.TestCase):
     """
     MY20 DEMO Booking process
     """
-    @classmethod
-    def setUpClass(cls):
-        cls.driver = firefox_browser()
-        cls.currentPage = BookingProcessPage(cls.driver)
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.driver.quit()
+    def setUp(self):
+        self.driver = firefox_browser()
+        self.currentPage = BookingProcessPage(self.driver)
 
-    @parameterized.expand(['en_GB'])
+    def tearDown(self):
+        self.driver.quit()
+
+    #@parameterized.expand(['en_GB'])
+    @parameterized.expand(["nl_BE", "fr_BE", "en_CA", "fr_CA", "cs_CZ", "da_DK", "de_DE", "es_ES", "en_EU", "fr_FR", "en_IE", "it_IT", "fr_LU", "hu_HU", "es_MX", "en_ZZ", "nl_NL", "no_NO", "de_AT", "pl_PL", "pt_PT", "de_CH", "en_AA", "fr_CH", "fi_FI", "sv_SE", "it_CH", "en_GB"])
     def test_demo_booking_process(self, locale):
         self.currentPage.logger.info(f"<#######[locale: {locale}]#######>")
 
@@ -43,6 +43,8 @@ class TestDemoBookingProcess(unittest.TestCase):
         self.check_homepage_cookie()
         self.check_homepage_social_link()
         self.check_homepage_footer_link()
+        # self.scroll_homepage_down()
+        self.currentPage.take_scroll_screenshot(locale, "homepage")
         self.check_homepage_button()
 
         self.currentPage.logger.info(f"<=======[HOMEPAGE]=======>")
@@ -53,6 +55,7 @@ class TestDemoBookingProcess(unittest.TestCase):
         self.check_selectbike_title()
         self.check_selectbike_copy()
         self.check_selectbike_bikelist()
+        self.currentPage.take_screenshot(locale, "select-bike")
         self.check_selectbike_choose_bike()
 
         self.currentPage.logger.info(f"<=======[SELECT-BIKE]=======>")
@@ -64,6 +67,8 @@ class TestDemoBookingProcess(unittest.TestCase):
         self.check_selectdealer_title()
         self.check_selectdealer_copy()
         self.check_selectdealer_googlemap()
+        self.waiting_selectdealer_button()
+        self.currentPage.take_screenshot(locale, "select-dealer")
         self.check_selectdealer_button()
 
         self.currentPage.logger.info(f"<=======[SELECT-DEALER]=======>")
@@ -73,8 +78,10 @@ class TestDemoBookingProcess(unittest.TestCase):
         self.currentPage.logger.info(f"<=======[BOOKING]=======>")
 
         self.check_booking_title()
+        self.currentPage.take_screenshot(locale, "booking")
         self.check_booking_copy()
         self.check_booking_privacy_popup()
+        self.input_booking_form()
         self.check_booking_button()
 
         self.currentPage.logger.info(f"<=======[BOOKING]=======>")
@@ -85,6 +92,7 @@ class TestDemoBookingProcess(unittest.TestCase):
         self.check_thankyou_title()
         self.check_thankyou_copy()
         self.check_thankyou_share_link()
+        self.currentPage.take_screenshot(locale, "thankyou")
 
         self.currentPage.logger.info(f"<=======[THANKYOU]=======>")
 
@@ -185,12 +193,18 @@ class TestDemoBookingProcess(unittest.TestCase):
 
         self.currentPage.logger.info(f"</-------[check home page footer link]------>")
 
-    def check_homepage_button(self):
-        self.currentPage.logger.info(f"<-------[check home page button]------>")
+    def scroll_homepage_down(self):
+        self.currentPage.logger.info(f"<-------[scroll homepage down]------>")
         # location_once_scrolled_into_view
         # height = self.currentPage.find_element(self.currentPage.element.homepage_booking_button).location_once_scrolled_into_view
-
         self.currentPage.script("window.scrollTo(0, document.body.scrollHeight);")
+
+        time.sleep(2)
+        self.currentPage.logger.info(f"</-------[scroll homepage down]------>")
+
+
+    def check_homepage_button(self):
+        self.currentPage.logger.info(f"<-------[check home page button]------>")
 
         # click book now button
         self.currentPage.click_element(self.currentPage.element.homepage_booking_button, refresh_page=True)
@@ -278,12 +292,14 @@ class TestDemoBookingProcess(unittest.TestCase):
 
         self.currentPage.logger.info(f"</-------[check select dealer googlemap]------>")
 
-    def check_selectdealer_button(self):
-        self.currentPage.logger.info(f"<-------[check select dealer button]------>")
-
+    def waiting_selectdealer_button(self):
         # wait for the button
         self.currentPage.wait_for_page_element(
             EC.element_to_be_clickable(self.currentPage.element.selectdealer_button))
+
+    def check_selectdealer_button(self):
+        self.currentPage.logger.info(f"<-------[check select dealer button]------>")
+
         # click button
         self.currentPage.click_element(self.currentPage.element.selectdealer_button, refresh_page=True)
 
@@ -339,7 +355,7 @@ class TestDemoBookingProcess(unittest.TestCase):
 
         self.currentPage.logger.info(f"</-------[check booking privacy popup]------>")
 
-    def check_booking_button(self):
+    def input_booking_form(self):
         """
         MY20 DEMO booking process: auto submit booking
         1. Title : select first one.
@@ -354,7 +370,7 @@ class TestDemoBookingProcess(unittest.TestCase):
         10.Via phone: Yes
         11.Submit the form.
         """
-        self.currentPage.logger.info(f"<-------[check booking button]------>")
+        self.currentPage.logger.info(f"<-------[input booking form]------>")
 
         form_data = {
             "firstname": "Test_DEMO_FN",
@@ -397,6 +413,11 @@ class TestDemoBookingProcess(unittest.TestCase):
 
         # 11. Close Via Post
         #self.currentPage.click_element(self.currentPage.element.booking_form_viapost)
+
+        self.currentPage.logger.info(f"</-------[input booking form]------>")
+
+    def check_booking_button(self):
+        self.currentPage.logger.info(f"<-------[check booking button]------>")
 
         # 11. Submit Form, waiting for page refresh.
         self.currentPage.click_element(self.currentPage.element.booking_submit_button, refresh_page=True)
