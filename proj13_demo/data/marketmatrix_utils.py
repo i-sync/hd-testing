@@ -7,7 +7,7 @@ __author__ = "Michael.Tian"
 
 import openpyxl
 
-__matrix_file_name__ = "proj13_demo/data/MY20-Demo-Matrix-V6.5.xlsx"
+__matrix_file_name__ = "proj13_demo/data/MY20-Demo-Matrix-V7.xlsx"
 
 def get_social_matrix():
     """

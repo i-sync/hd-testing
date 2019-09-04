@@ -47,7 +47,7 @@ class BookingProcessPage(Page):
 
     def take_screenshot(self, locale, page):
         path = "report/screenshot/proj13"
-        filename = f"{path}/{locale}-{page}-{datetime.datetime.now():%Y%m%d%H%M%S}.png"
+        filename = f"{path}/{locale}-{datetime.datetime.now():%Y%m%d%H%M%S}-{page}.png"
         self.driver.find_element_by_tag_name('html').screenshot(filename)
 
     def take_scroll_screenshot(self, locale, page):
@@ -70,5 +70,5 @@ class BookingProcessPage(Page):
             offset += img.size[1]
 
         path = "report/screenshot/proj13"
-        filename = f"{path}/{locale}-{page}-{datetime.datetime.now():%Y%m%d%H%M%S}.png"
+        filename = f"{path}/{locale}-{datetime.datetime.now():%Y%m%d%H%M%S}-{page}.png"
         screenshot.save(filename)
