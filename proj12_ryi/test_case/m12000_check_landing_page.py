@@ -9,7 +9,7 @@ from driver.browser import *
 
 from proj12_ryi.page.landing_page import LandingPage
 
-@pytest.mark.live_checker
+#@pytest.mark.live_checker
 class TestRYICheckLandingPage(unittest.TestCase):
     """
     MY20 RYI Landing page

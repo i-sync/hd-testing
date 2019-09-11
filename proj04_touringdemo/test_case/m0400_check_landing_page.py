@@ -9,7 +9,7 @@ from driver.browser import *
 
 from proj04_touringdemo.page.landing_page import LandingPage
 
-@pytest.mark.live_checker
+#@pytest.mark.live_checker
 class TestTouringDemoCheckLandingPage(unittest.TestCase):
     def setUp(self):
         self.driver = firefox_browser()
