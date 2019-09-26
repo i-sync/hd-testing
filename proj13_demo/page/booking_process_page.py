@@ -14,7 +14,7 @@ from page.page import Page
 from proj13_demo.data.urls import current_url
 from proj13_demo.element.elements_define import ElementsDefine
 
-from PIL import Image
+#from PIL import Image
 
 class BookingProcessPage(Page):
     """
