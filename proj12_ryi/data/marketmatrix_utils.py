@@ -83,3 +83,7 @@ def get_bike_matrix():
 
     wb.close()
     return res
+
+
+if __name__ == "__main__":
+    print(sorted(get_all_locale()))

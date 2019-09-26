@@ -7,7 +7,7 @@ __author__ = "Michael.Tian"
 
 import openpyxl
 
-__matrix_file_name__ = "proj13_demo/data/MY20-Demo-Matrix-V7.xlsx"
+__matrix_file_name__ = "proj13_demo/data/MY20 Demo Matrix v10.xlsx"
 
 def get_social_matrix():
     """
@@ -31,18 +31,36 @@ def get_social_matrix():
     wb.close()
     return res
 
-def get_all_locale():
+def get_homepage_locale():
     """
-    Get all locale from matrix
+    Get all locale from matrix for homepage check
     :return:
     """
     wb = openpyxl.load_workbook(__matrix_file_name__)
     sheet = wb["DEMO"]
 
     res = []
-    for index in range(4, 45):
+    for index in range(4, 33):
         locale = sheet["C{}".format(index)].value.split()[0]
         res.append(locale)
+
+    return res
+
+def get_all_locale():
+    """
+    Get all locale from matrix for booking process
+    :return:
+    """
+    wb = openpyxl.load_workbook(__matrix_file_name__)
+    sheet = wb["DEMO"]
+
+    res = []
+    for index in range(4, 33):
+        locale = sheet["C{}".format(index)].value.split()[0]
+        # check campaign code not equal 'ELOQUA'
+        campaign_code = sheet[f"F{index}"].value
+        if campaign_code != "ELOQUA":
+            res.append(locale)
 
     return res
 
@@ -91,3 +109,6 @@ def get_bike_matrix():
 
     wb.close()
     return res
+
+if __name__ == "__main__":
+    print(get_all_locale())
